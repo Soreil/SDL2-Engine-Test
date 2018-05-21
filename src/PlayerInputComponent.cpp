@@ -17,7 +17,14 @@ void PlayerInputComponent::update(Entity* entity) {
   if ( state[SDL_SCANCODE_DOWN] ) {
     printf("DOWN UP DOWN UP START A B LEFT RIGHT LEFT RIGHT \n");
   }
-  
+
+  if ( state[SDL_SCANCODE_LEFT] ) {
+    printf("hello, sailor!\n");
+  }
+
+  if ( state[SDL_SCANCODE_RIGHT] ) {
+    printf("Pressing right!\n");
+  }
   
   
 }

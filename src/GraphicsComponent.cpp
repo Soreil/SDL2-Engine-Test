@@ -23,7 +23,7 @@ void GraphicsComponent::update(Entity* entity){
 }
 
 void GraphicsComponent::setTexture(SDL_Renderer* r, const std::string pathfile) {
-  texture = Graphics::LoadTexture(r, pathfile.c_str() );
+  texture = Graphics::loadTexture(r, pathfile.c_str() );
   if (!texture)
     printf("Err loading texture to graphics component!: %s", SDL_GetError());
 }

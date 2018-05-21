@@ -1,9 +1,20 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_mixer.h>
+#include <SDL_ttf.h>
+
 #include "EntityManager.h"
 
+#include "Text.h"
+
+#include "World.h"
+#include "State.h"
+#include "TestState.h"
+
+
+
 class Entity;
+
 
 class App {
  public:
@@ -17,6 +28,15 @@ class App {
   SDL_Rect windowRect{0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
 
   EntityManager entityManager;
+
+
+  State* state = nullptr;
+  
+
+  TTF_Font* gFont = nullptr;
+  TextHandler* text = nullptr;
+
+ 
   
   Entity* player = nullptr;
   
