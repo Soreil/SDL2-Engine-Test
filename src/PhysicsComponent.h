@@ -4,19 +4,23 @@
 #include "Entity.h"
 #include <cstdint>
 
+#include "Vector2.h"
+
 typedef int32_t int32;
 
 class PhysicsComponent : public Component {
  public:
   SDL_Rect b_box;
-  int32 _x, _y, _w, _h;
+  int32 x, y, w, h;
   
   void update();
   void update(Entity* entity);
 
-  bool isColliding( Entity* collidable );
+  bool isColliding( PhysicsComponent* collidable );
 
-  PhysicsComponent( int32 x, int32 y, int32 w, int32 h  );
+  Vec2 getCollisionArea( PhysicsComponent* collidable );
+  
+  PhysicsComponent( int32 _x, int32 _y, int32 _w, int32 _h  );
   ~PhysicsComponent();
   
   

@@ -13,7 +13,7 @@ class TestState : public State {
   
   void load(SDL_Renderer* r);
 
-  virtual void proccessInputs();
+  void proccessInputs();
   
   void update(SDL_Renderer* r);
 
@@ -21,6 +21,9 @@ class TestState : public State {
 
   TestState();
 
-  ~TestState();
+
+
+
+  ~TestState() {}
 
 };

@@ -1,11 +1,10 @@
 #pragma once
 #include <SDL.h>
+#include <stdio.h>
 
 
 class State {
  public:
-
-  
 
   virtual void load(SDL_Renderer* r) = 0;
 
@@ -23,3 +22,8 @@ class State {
   
 
 }; 
+
+
+namespace StateHelper {
+  void switchState( State* s, State* newState );
+}

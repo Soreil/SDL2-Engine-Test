@@ -21,7 +21,7 @@ void TestState::render(SDL_Renderer* r) {
 TestState::TestState() {
 
 }
-
+/*
 TestState::~TestState() {
   
-}
+}*/
