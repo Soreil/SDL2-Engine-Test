@@ -1,0 +1,14 @@
+#ingore buffers and emacs stuff
+
+*.cpp~
+*.h~
+
+*.#.cpp
+*.#.h
+
+*.gitignore~
+
+*makefile~
+
+#ignore build dir
+build/
