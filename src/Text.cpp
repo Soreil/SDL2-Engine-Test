@@ -4,21 +4,43 @@
 #include <typeinfo>
 
 
+
+TextSprite::TextSprite( SDL_Renderer* r, const std::string text, SDL_Color* c, TTF_Font* f,
+			int x, int y ) {
+  
+  texture = Graphics::loadTextTexture( text, r, f, c );
+  renderQuad = new SDL_Rect{x, y};
+  SDL_QueryTexture( texture, NULL, NULL, &renderQuad->w, &renderQuad->h );
+
+  delete c;
+  
+}
+
+
+
 TextSprite::TextSprite( SDL_Renderer* r, const std::string text, int textSize, SDL_Color* c, TTF_Font* f,
 			int x, int y, int w, int h ) {
 
   texture = Graphics::loadTextTexture( text, r, f, c );
-  
-  renderQuad.x = x;
-  renderQuad.y = y;
-  renderQuad.w = w;
-  renderQuad.h = h;
+
+  if ( w == -1 || h == -1 ) {
+    renderQuad = new SDL_Rect{ x, y };
+    SDL_QueryTexture( texture, NULL, NULL, &renderQuad->w, &renderQuad->h );
+  } else {
+  renderQuad = new SDL_Rect{x, y, w, h};  
+  }
+}
+
+void TextSprite::render(SDL_Renderer* r) {
+  if (texture)
+    SDL_RenderCopy( r, texture, NULL, renderQuad );
   
 }
 
 TextSprite::~TextSprite() {
   SDL_DestroyTexture(texture);
   delete texture;
+  delete renderQuad;
 }
 
 
@@ -27,17 +49,23 @@ TextHandler::TextHandler(TTF_Font* f, SDL_Renderer* r) {
   font = f;
   renderer = r;
   
-  rect = new SDL_Rect{0, 0, 0, 0};
+  //rect = new SDL_Rect{0, 0, 0, 0};
   
   // gameText[0] = Gr
 
-  addText( "hello, sailor!", NULL, Vec2{0,0}, 32, 32  );
+  addText( "hello, sailor!", new SDL_Color{255,255,255}, Vec2{0,0} );
   
 }
 
 
+void TextHandler::addText(std::string text, SDL_Color* c, Vec2 position) {
+  gameText.push_back( new TextSprite(renderer, text, c, font, position.x, position.y ) );
+  printf( "Added text to gameText vector!\n" );
+}
+
+
 void TextHandler::addText( std::string text, SDL_Color* c, Vec2 position, int w, int h ) {
-  gameText.push_back( Graphics::loadTextTexture(text, renderer, font, c) );
+  //  gameText.push_back( Graphics::loadTextTexture(text, renderer, font, c) );
   printf("Added text to gameArray!\n");
 
 }
@@ -46,9 +74,8 @@ void TextHandler::addText( std::string text, SDL_Color* c, Vec2 position, int w,
 
 void TextHandler::renderText( Text::text textKey, Vec2 position ) {
   if ( gameText[textKey] ) {
-    SDL_QueryTexture( gameText[textKey], NULL, NULL, &rect->w, &rect->h ); //TODO(sweets): dangerous, if called 
-    SDL_RenderCopy( renderer, gameText[textKey], NULL, rect);              // more than once, it will use the same
-  } else {                                                                 // same rect and will probably crash
+    SDL_RenderCopy( renderer, gameText[textKey]->texture, NULL, gameText[textKey]->renderQuad);
+  } else {                                                                 
     printf(" Error! gameText[textKey] is null! No text set for this key! \n");
   }
   
@@ -60,7 +87,7 @@ void TextHandler::renderText( Text::text textKey, Vec2 position ) {
 TextHandler::~TextHandler() {
    font = nullptr;
    for (auto t : gameText) {
-     SDL_DestroyTexture(t);
+     delete t;
      t = nullptr;
    }
 }
