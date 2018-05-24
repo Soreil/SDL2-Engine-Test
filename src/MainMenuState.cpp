@@ -2,12 +2,16 @@
 
 #include "Graphics.h"
 
-void MainMenuState::load(SDL_Renderer* r, StateManager* sm) {
+bool MainMenuState::load(SDL_Renderer* r, StateManager* sm) {
+  if (!r  || !sm)
+    return false;
   stateManager = sm;
-
+  
   menuTexture = Graphics::loadTexture( r, "resources/menuTexture.bmp" );
-  
-  
+  if (!menuTexture)
+    return false;
+
+  return true;
 }
 
 void MainMenuState::proccessInputs() {

@@ -7,7 +7,7 @@
 
 class State;
 
-const Uint8 STATE_COUNT = 2;
+const Uint8 STATE_COUNT = 3;
 enum GameState {
   mainMenu = 0,
   playing,

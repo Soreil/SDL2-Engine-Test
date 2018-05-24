@@ -6,6 +6,8 @@
 *.#.cpp
 *.#.h
 
+*.#.md
+
 *.bat~
 
 *.gitignore~

@@ -10,7 +10,9 @@ class State {
 
   StateManager* stateManager = nullptr;
 
-  virtual void load(SDL_Renderer* r, StateManager* sm ) = 0;
+  bool loaded = false;
+
+  virtual bool load(SDL_Renderer* r, StateManager* sm ) = 0;
 
 
   virtual void proccessInputs() = 0;

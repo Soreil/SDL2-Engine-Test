@@ -10,8 +10,6 @@
 #include <typeinfo>
 
 void EntityManager::init(SDL_Renderer* r) {
-  addEntity( Player::createPlayer( r ) );
-
    for (auto e : entities ) {
      printf("+1 entity\n");
      for (auto c :e->components ) {
@@ -55,6 +53,7 @@ void EntityManager::render(SDL_Renderer* r) {
   for (auto e : entities) {
     if ( e->hasComponent<GraphicsComponent>() ) {
       e->getComponent<GraphicsComponent>()->update(e);
+  
     }
   }
 }

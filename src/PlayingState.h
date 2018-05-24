@@ -16,7 +16,7 @@ class PlayingState : public State {
 
   Sprite* testSprite = nullptr;
   
-  void load(SDL_Renderer* r, StateManager* sm);
+  bool load(SDL_Renderer* r, StateManager* sm);
 
   void proccessInputs();
   

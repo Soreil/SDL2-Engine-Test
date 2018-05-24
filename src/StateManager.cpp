@@ -40,7 +40,9 @@ void StateManager::load() {
   */
 
   for ( int i = 0; i < STATE_COUNT; i++ ) {
-    states[i]->load(renderer, this);
+    if ( states[i]->load(renderer, this) ) {
+      states[i]->loaded = true;
+    }  
   }
 
   

@@ -3,7 +3,7 @@
 
 
 void World::load(SDL_Renderer* r) {
-  // worldEntities.load();
+   worldEntities.init(r);
   
 }
 

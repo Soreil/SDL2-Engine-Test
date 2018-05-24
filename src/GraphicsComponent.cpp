@@ -2,36 +2,34 @@
 #include "Graphics.h"
 
 
-GraphicsComponent::GraphicsComponent(SDL_Renderer* r) {
+
+GraphicsComponent::GraphicsComponent( SDL_Renderer* r, const std::string texturePath,
+				      Vec2* position, SDL_Rect* rQuad ) {
   if (r)
     renderer = r;
+  sprite = new Sprite( r, texturePath, position, rQuad );
+  
 }
-
-GraphicsComponent::GraphicsComponent(SDL_Renderer* r, const std::string pathfile) {
-  if (r)
-    renderer = r;
-  setTexture(r, pathfile.c_str());
-}
-
 
 void GraphicsComponent::update() {
 
 }
 
 void GraphicsComponent::update(Entity* entity){
-  SDL_RenderCopy( renderer, texture, NULL, NULL );
+  sprite->render(renderer);
 }
 
-void GraphicsComponent::setTexture(SDL_Renderer* r, const std::string pathfile) {
-  texture = Graphics::loadTexture(r, pathfile.c_str() );
-  if (!texture)
-    printf("Err loading texture to graphics component!: %s", SDL_GetError());
-}
+
+
 
 GraphicsComponent::~GraphicsComponent() {
   renderer = nullptr;
+  delete sprite;
+
+  /*
   SDL_DestroyTexture(texture);
   texture  = nullptr;
   delete renderArea;
   renderArea = nullptr;
+  */
 }

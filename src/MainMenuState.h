@@ -11,7 +11,7 @@ class MainMenuState : public State {
 
   SDL_Texture* menuTexture = nullptr;
   
-  void load(SDL_Renderer* r, StateManager* sm);
+  bool load(SDL_Renderer* r, StateManager* sm);
 
   void proccessInputs();
   

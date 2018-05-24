@@ -3,24 +3,22 @@
 #include "Player.h"
 
 
-void PlayingState::load(SDL_Renderer* r, StateManager* sm) {
+bool PlayingState::load(SDL_Renderer* r, StateManager* sm) {
 
-
+  if ( !r || !sm)
+    return false;
   //Add entities to world
-
   world.worldEntities.addEntity( Player::createPlayer(r) );
   
-  
+  testSprite = new Sprite( r, "resources/nene.bmp", NULL, new SDL_Rect{0,0,800,200} );
   //Do load() routine
   world.load(r);
   
-
-  testSprite = new Sprite( r, "resources/nene.bmp", new Vec2{100,100}, NULL );
-  
+  return true;
 }
 
 void PlayingState::proccessInputs() {
-
+  world.proccessInputs();
 }
 
 void PlayingState::update(SDL_Renderer* r) {

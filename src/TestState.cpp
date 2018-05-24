@@ -4,10 +4,14 @@
 
 #include "StateManager.h"
 
-void TestState::load(SDL_Renderer* r, StateManager* sm ) {
+bool TestState::load(SDL_Renderer* r, StateManager* sm ) {
+  if (!r || !sm)
+    return false;
+  
   stateManager = sm;
 
   testWorld.load(r);
+  return true;
 }
 
 void TestState::proccessInputs(  ) {
