@@ -11,7 +11,7 @@ Sprite::Sprite(SDL_Renderer* r, const std::string textureName, Vec2* position, S
   texture = Graphics::loadTexture(r,textureName);
 
   if (!texture) {
-    printf("Error loading texture for sprite class!\n" )
+    printf("Error loading texture for sprite class!\n" );
       }
   else {
     if ( !rQuad ) {
