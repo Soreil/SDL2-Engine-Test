@@ -9,8 +9,9 @@ class State;
 
 const Uint8 STATE_COUNT = 2;
 enum GameState {
-  test = 0,
-  playing
+  mainMenu = 0,
+  playing,
+  test
 };
   
   

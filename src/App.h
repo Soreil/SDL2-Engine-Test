@@ -11,6 +11,8 @@
 
 #include "StateManager.h"
 
+#include "Sprite.h"
+
 
 class Entity;
 
@@ -26,15 +28,11 @@ class App {
   
   SDL_Rect windowRect{0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
 
-  EntityManager entityManager;
-
   StateManager stateManager;
   
   
   TTF_Font* gFont = nullptr;
-  TextHandler* text = nullptr;
-
- 
+  TextHandler* text = nullptr;  
   
   Entity* player = nullptr;
   

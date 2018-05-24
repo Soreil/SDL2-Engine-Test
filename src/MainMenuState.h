@@ -3,18 +3,13 @@
 #include <SDL.h>
 
 #include "State.h"
-#include "World.h"
 
-#include "StateManager.h"
 
-#include "Sprite.h"
 
-class PlayingState : public State {
+class MainMenuState : public State {
  public:
 
-  World world;
-
-  Sprite* testSprite = nullptr;
+  SDL_Texture* menuTexture = nullptr;
   
   void load(SDL_Renderer* r, StateManager* sm);
 
@@ -25,8 +20,8 @@ class PlayingState : public State {
   void render(SDL_Renderer* r);
 
 
-  PlayingState();
-  ~PlayingState();
+  MainMenuState();
+  ~MainMenuState();
   
-  
+
 };

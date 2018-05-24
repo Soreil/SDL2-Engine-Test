@@ -5,6 +5,8 @@
 
 #include "PlayingState.h"
 
+#include "MainMenuState.h"
+
 bool StateManager::init(SDL_Renderer* r) {
   renderer = r;
 
@@ -17,12 +19,13 @@ bool StateManager::init(SDL_Renderer* r) {
     states[i] = nullptr;
   }
   
-  states[ GameState::test ]    = new TestState();
+  states[ GameState::mainMenu ]    = new MainMenuState();
   states[ GameState::playing ] = new PlayingState();
-
+  states[ GameState::test ]    = new TestState();
+  
   //currentState = stateContainer[ GameState::testState ];
 
-  currentState = states [ GameState::test ];
+  currentState = states [ GameState::mainMenu ];
 
   
   

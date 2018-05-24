@@ -6,6 +6,7 @@
 #include "Input.h"
 #include "TestState.h"
 #include "PlayingState.h"
+#include "Vector2.h"
 
 App::App()
 {
@@ -71,22 +72,12 @@ bool App::startup()
   This is where most managers and other things should be loaded
 */
 void App::Load()
-{ 
+{
 
-
-
+  
   stateManager.load();
-  
-  
-  //entityManager.init(renderer);
 
-  /*Load temporary global instance of textHandler
-    
-    TODO(sweets): Possibly Convert this to namespace only, or find way to make this cross class without dependency 
-    injection. Preferably without a "TextComponent" but if nothing by tomorrow it's acceptable
 
-   */
-  
 }
 
 /*
@@ -137,19 +128,12 @@ void App::Update()
 
       stateManager.proccessInputs();
       
-      //entityManager.proccessInputs();
-
-     
+      
       
     }
 
-
   stateManager.update();
-  
-  //entityManager.update();
-  
-  //SDL_UpdateWindowSurface(window);
-  
+    
 }
 
 
@@ -158,12 +142,7 @@ void App::Render()
 {
   SDL_RenderClear(renderer);			//BEGINS RENDERING
   
-  //currentWorld->render(renderer);		//Render the current world
-
-
-  //entityManager.render(renderer);
   
-
   stateManager.render();
 
   text->renderText(Text::text::testSailor, Vec2{0,0});
@@ -192,7 +171,7 @@ void App::run()
 	Render();
       } 
   }
-  //cleanup();
+  
 }
 
 void App::cleanup()
@@ -210,6 +189,7 @@ void App::cleanup()
   TTF_CloseFont(gFont);
   gFont = nullptr;
 
+  
   
   delete text;
   
