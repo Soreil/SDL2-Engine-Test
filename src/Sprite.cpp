@@ -9,19 +9,25 @@ void Sprite::render(SDL_Renderer* r) {
 
 Sprite::Sprite(SDL_Renderer* r, const std::string textureName, Vec2* position, SDL_Rect* rQuad) {
   texture = Graphics::loadTexture(r,textureName);
-  if ( !rQuad ) {
-    if ( !position ) {
-      renderQuad = new SDL_Rect{0,0};
-    } else {
-      renderQuad = new SDL_Rect{position->x, position->y};
-      delete position;
-    }
-    SDL_QueryTexture(texture , NULL, NULL, &renderQuad->w, &renderQuad->h );
 
-  } else {
-    renderQuad = rQuad;
-    if (position)
-      renderQuad->x = position->x; renderQuad->y = position->y;
+  if (!texture) {
+    printf("Error loading texture for sprite class!\n" )
+      }
+  else {
+    if ( !rQuad ) {
+      if ( !position ) {
+	renderQuad = new SDL_Rect{0,0};
+      } else {
+	renderQuad = new SDL_Rect{position->x, position->y};
+	delete position;
+      }
+      SDL_QueryTexture(texture , NULL, NULL, &renderQuad->w, &renderQuad->h );
+      
+    } else {
+      renderQuad = rQuad;
+      if (position)
+	renderQuad->x = position->x; renderQuad->y = position->y;
+    }
   }
 }
 
