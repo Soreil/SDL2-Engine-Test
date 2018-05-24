@@ -5,13 +5,15 @@
 #include "State.h"
 #include "World.h"
 
+#include "StateManager.h"
+
 class PlayingState : public State {
  public:
 
   World world;
   
   
-  void load(SDL_Renderer* r);
+  void load(SDL_Renderer* r, StateManager* sm);
 
   void proccessInputs();
   
@@ -21,7 +23,7 @@ class PlayingState : public State {
 
 
   PlayingState();
-  ~PlayingState(){}
+  ~PlayingState();
   
   
 };

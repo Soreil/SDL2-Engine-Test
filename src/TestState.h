@@ -5,13 +5,16 @@
 #include "State.h"
 #include "World.h"
 
+class StateManager;
+
 
 class TestState : public State {
  public:
 
+  
   World testWorld;  
   
-  void load(SDL_Renderer* r);
+  void load(SDL_Renderer* r, StateManager* sm );
 
   void proccessInputs();
   
@@ -24,6 +27,5 @@ class TestState : public State {
 
 
 
-  ~TestState() {}
-
+  ~TestState();
 };

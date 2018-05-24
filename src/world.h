@@ -21,7 +21,7 @@ class World {
 
  void proccessInputs();
  
- void update();
+ void update(SDL_Renderer* r);
 
  void render(SDL_Renderer *r);
   

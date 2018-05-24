@@ -2,11 +2,15 @@
 #include <SDL.h>
 #include <stdio.h>
 
+#include "StateManager.h"
+
 
 class State {
  public:
 
-  virtual void load(SDL_Renderer* r) = 0;
+  StateManager* stateManager = nullptr;
+
+  virtual void load(SDL_Renderer* r, StateManager* sm ) = 0;
 
 
   virtual void proccessInputs() = 0;
@@ -24,6 +28,3 @@ class State {
 }; 
 
 
-namespace StateHelper {
-  void switchState( State* s, State* newState );
-}

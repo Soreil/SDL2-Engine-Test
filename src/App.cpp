@@ -4,7 +4,8 @@
 #include "Entity.h"
 #include "Component.h"
 #include "Input.h"
-
+#include "TestState.h"
+#include "PlayingState.h"
 
 App::App()
 {
@@ -54,7 +55,11 @@ bool App::startup()
     return false;
   }
 
+
+  //INIT ENGINE SYSTEMS
   text = new TextHandler(gFont, renderer);
+  stateManager.init(renderer);
+
   
   
   //If everything is successfully intialized, true is returned here
@@ -69,8 +74,8 @@ void App::Load()
 { 
 
 
-  state = new TestState();
-  state->load(renderer);
+
+  stateManager.load();
   
   
   //entityManager.init(renderer);
@@ -128,17 +133,18 @@ void App::Update()
 
       //updates keystate array
       //SDL_PumpEvents();
-  
+
+
+      stateManager.proccessInputs();
       
       //entityManager.proccessInputs();
 
-      state->proccessInputs();
+     
       
     }
 
-  state->update(renderer);
-  
-  
+
+  stateManager.update();
   
   //entityManager.update();
   
@@ -154,12 +160,11 @@ void App::Render()
   
   //currentWorld->render(renderer);		//Render the current world
 
-  
 
   //entityManager.render(renderer);
   
 
-  state->render(renderer);
+  stateManager.render();
 
   text->renderText(Text::text::testSailor, Vec2{0,0});
   
@@ -205,7 +210,6 @@ void App::cleanup()
   TTF_CloseFont(gFont);
   gFont = nullptr;
 
-  delete state;
   
   delete text;
   

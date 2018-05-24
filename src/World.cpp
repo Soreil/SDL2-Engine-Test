@@ -40,7 +40,7 @@ void World::proccessInputs() {
 //}
 
 
-void World::update() {
+void World::update(SDL_Renderer* r) {
   worldEntities.update();
 
   //Do collision routine around here maybe?

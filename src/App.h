@@ -8,9 +8,8 @@
 #include "Text.h"
 
 #include "World.h"
-#include "State.h"
-#include "TestState.h"
 
+#include "StateManager.h"
 
 
 class Entity;
@@ -29,10 +28,9 @@ class App {
 
   EntityManager entityManager;
 
-
-  State* state = nullptr;
+  StateManager stateManager;
   
-
+  
   TTF_Font* gFont = nullptr;
   TextHandler* text = nullptr;
 
