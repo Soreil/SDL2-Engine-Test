@@ -8,5 +8,5 @@
 
 
 namespace Player {
-  Entity* createPlayer(SDL_Renderer* r);
+ 
 }

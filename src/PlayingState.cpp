@@ -4,11 +4,9 @@
 
 
 bool PlayingState::load(SDL_Renderer* r, StateManager* sm) {
-
   if ( !r || !sm)
     return false;
   //Add entities to world
-  world.worldEntities.addEntity( Player::createPlayer(r) );
   
   testSprite = new Sprite( r, "resources/nene.bmp", NULL, new SDL_Rect{0,0,800,200} );
   //Do load() routine
