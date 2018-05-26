@@ -3,13 +3,20 @@
 */
 #pragma once
 #include <SDL.h>
-#include "Component.h"
+
 #include "Entity.h"
+#include "Input.h"
 
 
 class Player : public Entity {
+ private:
+  Input* input_ = nullptr;
 
-  void load();
+ public:
+
+  void load() {}
+  
+  void load(Input& input);
 
   void proccessInputs();
   

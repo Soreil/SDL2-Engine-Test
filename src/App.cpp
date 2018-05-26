@@ -77,6 +77,7 @@ void App::Load()
   
   stateManager.load();
 
+  player.load(gInput);
 
 }
 
@@ -92,6 +93,11 @@ void App::Load()
 void App::Update()
 {  
   //SDL_GetMouseState(&mouse_position.x, &mouse_position.y);
+
+  
+  //Wipe last frame's input information
+  gInput.newFrameWipe();
+  
   while (SDL_PollEvent(&e) != 0)
     {
       switch (e.type)
@@ -103,10 +109,15 @@ void App::Update()
 	  break;
 	  
 	case SDL_KEYDOWN:
-	  printf("KEYBOARD INPUT FROM KEY: %d \n", e.key.keysym.sym);
+	  gInput.keyDownEvent(e);
 	  
 	  break;
+
+	case SDL_KEYUP:
+
+	  gInput.keyUpEvent(e);
 	  
+	  break;
 	  
 	case SDL_MOUSEBUTTONDOWN:
 	  printf("MOUSE INPUT FROM KEY: %d \n", e.button.button);
@@ -127,7 +138,7 @@ void App::Update()
 
 
       stateManager.proccessInputs();
-      
+      player.update(renderer);
       
       
     }
@@ -145,6 +156,8 @@ void App::Render()
   
   stateManager.render();
 
+  player.render(renderer);
+  
   text->renderText(Text::text::testSailor, Vec2{0,0});
   
   

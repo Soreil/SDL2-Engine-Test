@@ -20,7 +20,7 @@ void PlayingState::proccessInputs() {
 }
 
 void PlayingState::update(SDL_Renderer* r) {
-
+  world.update(r);
 }
 
 void PlayingState::render(SDL_Renderer* r) {
