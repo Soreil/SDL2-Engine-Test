@@ -25,7 +25,6 @@ Sprite::Sprite(SDL_Renderer* r, const std::string textureName, Vec2* position, S
       
     } else {
       renderQuad = rQuad;
-      delete rQuad;
      
       if (position) {
 	renderQuad->x = position->x;

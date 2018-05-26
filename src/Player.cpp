@@ -24,14 +24,19 @@ void Player::update(SDL_Renderer* r) {
 
 
 void Player::render(SDL_Renderer* r) {
-
+  sprite->render(r);
 }
 
-Player::Player() {
+
+Player::Player( SDL_Renderer* r, Vec2* position, int w, int h ) {
+  sprite = new Sprite(r, textureName, NULL, new SDL_Rect{position->x, position->y, w, h} );
   
 }
 
 Player::~Player() {
   input_ = nullptr;
+
+  delete sprite;
+  sprite = nullptr;
 }
 

@@ -12,6 +12,8 @@ class Player : public Entity {
  private:
   Input* input_ = nullptr;
 
+  const std::string textureName = "resources/ass.bmp";
+
  public:
 
   void load() {}
@@ -24,7 +26,7 @@ class Player : public Entity {
 
   void render(SDL_Renderer *r);
   
-  Player();
+  Player(SDL_Renderer* r, Vec2* position, int w, int h);
   ~Player();
   
 
