@@ -12,10 +12,10 @@ struct TextSprite {
   SDL_Rect* renderQuad = nullptr;
   SDL_Color* color =     nullptr;
   
-  TextSprite( SDL_Renderer* r, const std::string text, SDL_Color* c, TTF_Font* f,
+  TextSprite( SDL_Renderer* r, const std::string text, SDL_Color c, TTF_Font* f,
 	      int x, int y);
   
-  TextSprite(SDL_Renderer* r, const std::string text, int textSize, SDL_Color* c, TTF_Font* f,
+  TextSprite(SDL_Renderer* r, const std::string text, int textSize, SDL_Color c, TTF_Font* f,
 	     int x, int y, int w, int h);
 
   void render(SDL_Renderer* r);
@@ -45,9 +45,9 @@ class TextHandler {
   //std::vector<SDL_Texture*>gameText;
   std::vector<TextSprite*>gameText;
 
-  void addText(std::string text, SDL_Color* c, Vec2 position);
+  void addText(std::string text, SDL_Color c, Vec2 position);
   
-  void addText( std::string text, SDL_Color* c, Vec2 position, int w, int h );
+  void addText( std::string text, SDL_Color c, Vec2 position, int w, int h );
 
   void renderText( Text::text textKey, Vec2 position );
   

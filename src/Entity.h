@@ -5,66 +5,37 @@
 #include <SDL.h>
 
 #include "Vector2.h"
-#include "Component.h"
 
-#include <typeinfo.h>
+#include "Sprite.h"
+
+#include <stdint.h>
+
+typedef uint32_t Uint32;
 
 
 class Entity
 {
  public:
-  std::vector<Component*>components;
   
-  
-  Entity(std::vector<Component*> c);
-
-  Component* getComponentByType(ComponentType type);
-  
-  int typeID;
   std::string u_tag;
   
   Vec2 position;
   Vec2 velocity;
+  
+  SDL_Rect* b_box = nullptr;
 
+  Sprite* sprite = nullptr;
 
-  void load();
-  
-  void update(SDL_Renderer* r);
-  
-  void render(SDL_Renderer* r);
-  
-  template <typename T>
-    T* getComponent() {
-    for (auto c : components) {
-      if ( typeid(*c) == typeid(T) ) {
-	return dynamic_cast<T*>(c);
-      }
-    }
-  }
+  virtual void load() = 0;
 
-  template <typename T>
-    bool hasComponent() {
-    for (auto c : components) {
-      if ( typeid(*c) == typeid(T) ) {
-	return true;
-      }
-    }
-    return false; 
-  }
+  virtual void proccessInputs() = 0;
   
-  template <typename T>
-    void getCompTest(){
-    for (auto c : components) {
-      if ( typeid( *c ) == typeid(T) ) {
-	printf("found a match!\n");
-      }
-    }
-  }
+  virtual void update(SDL_Renderer* r) = 0;
   
+  virtual void render(SDL_Renderer* r) = 0;
   
-  
+
+  Entity();
   ~Entity();
-  
-  
   
 };

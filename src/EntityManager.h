@@ -5,32 +5,24 @@
 
 #include "Entity.h"
 
-#include "GraphicsComponent.h"
-#include "InputComponent.h"
-#include "PlayerInputComponent.h"
-#include "PhysicsComponent.h"
 
+const Uint8 MAX_ENTITIES = 16;
 
 struct EntityManager {
 
-  std::vector<Entity*> entities;
+  Entity* entities[16];
   
-  void init(SDL_Renderer* r);
+  bool init();
 
   void proccessInputs();
   
-  void update();
+  void update(SDL_Renderer* r);
 
   void render(SDL_Renderer* r);
 
-  Entity* getEntityByTag(const std::string tag); //for entities that don't share tags
-
-  template <typename T>
-  std::vector<Entity*> getEntitiesWithComponentType();
-     
   void addEntity(Entity* entity);
 
-  EntityManger();
+  EntityManager();
   ~EntityManager();
   
 };

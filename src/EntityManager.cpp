@@ -9,82 +9,67 @@
 
 #include <typeinfo>
 
-void EntityManager::init(SDL_Renderer* r) {
-   for (auto e : entities ) {
-     printf("+1 entity\n");
-     for (auto c :e->components ) {
-       printf( "+1 component\n" );
-       printf("Type: %s\n", typeid(*c).name() );
-     }
-   }
+bool EntityManager::init() {
+
+  for (int i = 0; i < MAX_ENTITIES; i++) {
+    entities[i] = nullptr;
+  }
+  return true;
 }
 
 
 void EntityManager::proccessInputs() {
-  for (auto e : entities ) {
-    if ( e->hasComponent<PlayerInputComponent>() ) {
-      e->getComponent<PlayerInputComponent>()->update(e);
-    }
+/*
+  for (int i = 0; i < MAX_ENTITIES; i++) {
+    entities[i]->proccessInputs();
   }
+  */
 }
 
 
-void EntityManager::update() {
-
-  for ( auto e : entities ) {
-
-    // check for each system in order
-    /*
-    if ( e->hasComponent<InputComponent>() ) {
-      e->getComponent<InputComponent>()->update();
-    }
-    */
-
-    if ( e->hasComponent<PhysicsComponent>() ) {
-      e->getComponent<PhysicsComponent>()->update(e);
-    }
-    
-    
-  }
-  
+void EntityManager::update(SDL_Renderer* r) {
+  /*
+for (int i = 0; i < MAX_ENTITIES; i++) {
+  entities[i]->update(r);
+ }
+  */
 }
 
 void EntityManager::render(SDL_Renderer* r) {
-  for (auto e : entities) {
-    if ( e->hasComponent<GraphicsComponent>() ) {
-      e->getComponent<GraphicsComponent>()->update(e);
-  
-    }
+  /*
+  for (int i = 0; i < MAX_ENTITIES; i++) {
+    entities[i]->render(r);
   }
+  */
 }
 
-template <typename T>
-std::vector<Entity*> EntityManager::getEntitiesWithComponentType() {
-  std::vector<Entity*> ents;
-  for (auto e : entities) {
-    if ( e->hasComponent<T>() ) {
-      ents.push_back(e);
-    }
-  }
-  return ents;
-}
 
 void EntityManager::addEntity(Entity* entity) {
-  if (entity) {
-    entities.push_back(entity);
+  if ( entities[MAX_ENTITIES] ) {
+    printf("Entities array is full! Cannot add new entitiy");
+    delete entity;
   }
   else {
-    printf("Null entity! ERROR!\n");
+    for (int i = 0; i < MAX_ENTITIES; i++) { 
+      if (!i) {
+	entities[i] = entity;
+      }
+    }
   }
 }
 
 
-/*
 EntityManager::EntityManager() {
-
-}*/
+  if ( !init() ) {
+    printf("EntityManager init() Failed!\n");
+  }
+}
 
 EntityManager::~EntityManager() {
-  for (auto e : entities)
-    delete e;
+  for (int i = 0; i < MAX_ENTITIES; i++) {
+    if (i) {
+      delete entities[i];
+      entities[i] = nullptr;
+    }
+  }
 }

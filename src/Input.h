@@ -1,44 +1,31 @@
+#pragma once
+
 #include <SDL.h>
 #include <map>
 
-namespace Input {
 
-  const int USER_KEY_COUNT = 4;
-  
-  int validKeys[USER_KEY_COUNT] = {
-    SDLK_LEFT,
-    SDLK_RIGHT,
-    SDLK_UP,
-    SDLK_DOWN
-  };
-  
-  std::map<SDL_Keycode, bool> inputs;
+/*
+  Class structure is borrowed from github.com/cavestory-sdl2
+  Sorry, but it was really simple and good.
+*/
 
+class Input {
+ private:
+  std::map<SDL_Scancode, bool> pressedKeys_;
+  std::map<SDL_Scancode, bool> releasedKeys_;
+  std::map<SDL_Scancode, bool> heldKeys_;
+  
+ public:
+  void newFrameWipe();
+  
+  bool isKeyPressed(SDL_Scancode key);
+  bool isKeyReleased(SDL_Scancode key);
+  bool isKeyHeld(SDL_Scancode key);
 
-  void initInputs() {
-    for ( int i = 0; i < USER_KEY_COUNT; i++ ) {
-      inputs.insert( std::make_pair( validKeys[i], false ) );
-    }
-  }
+  void keyDownEvent(const SDL_Event& event);
+  void keyUpEvent(const SDL_Event& event);
   
-  void proccessInputs(SDL_Event* e) {
-    while (SDL_PollEvent(e)!= 0 ) {
-      for ( int i = 0; i < USER_KEY_COUNT; i++ ) {
-	if ( e->key.keysym.sym == validKeys[i] ) {
-   
-	  if( e->type == SDL_KEYDOWN){
-	    inputs[i] = true;
-	  } else if ( e->type == SDL_KEYUP ) {
-	    inputs[i] = false;
-	  } else {
-	    printf("wrong code path!\n");
-	  }
-	 
-	}
-      }
-    }
-  }
-  
-      
-}
-    
+  Input();
+  ~Input();  
+
+};

@@ -9,6 +9,8 @@
 
 #include "Sprite.h"
 
+#include "Player.h"
+
 class PlayingState : public State {
  public:
 

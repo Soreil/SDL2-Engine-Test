@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include "Player.h"
 #include "Entity.h"
-#include "Component.h"
 #include "Input.h"
 #include "TestState.h"
 #include "PlayingState.h"
@@ -30,6 +29,7 @@ bool App::startup()
     return false;
   }
 
+
   // Set game loop flag
   running = true;
 
@@ -39,10 +39,20 @@ bool App::startup()
   window = SDL_CreateWindow("Test", 200, 200,
 			    WINDOW_WIDTH, WINDOW_HEIGHT,
 			    SDL_WINDOW_SHOWN);
+
+  if (!window) {
+    printf(" Window Couldn't be loaded! Err: %s \n", SDL_GetError() );
+    return false;
+  }
   
   renderer = SDL_CreateRenderer(
 				window, -1, SDL_RENDERER_ACCELERATED);
-  
+
+  if (!renderer) {
+    printf(" Renderer Couldn't be loaded! Err: %s \n", SDL_GetError() );
+    return false;
+  }
+    
   screenSurface = SDL_GetWindowSurface(window);
   if (!screenSurface) {
     printf("Error loading screen surface!: %s", SDL_GetError()); 
@@ -55,13 +65,13 @@ bool App::startup()
     printf( "Error loadng font! Err: %s\n", TTF_GetError() );
     return false;
   }
-
+  
 
   //INIT ENGINE SYSTEMS
+  
   text = new TextHandler(gFont, renderer);
   stateManager.init(renderer);
 
-  
   
   //If everything is successfully intialized, true is returned here
   return true;
@@ -74,9 +84,11 @@ bool App::startup()
 void App::Load()
 {
 
+  player = new Player( renderer, new Vec2{0,0}, 32, 32);
   
   stateManager.load();
 
+  //player.load(gInput);
 
 }
 
@@ -92,6 +104,12 @@ void App::Load()
 void App::Update()
 {  
   //SDL_GetMouseState(&mouse_position.x, &mouse_position.y);
+
+  
+  //Wipe last frame's input information
+
+  //gInput.newFrameWipe();
+  
   while (SDL_PollEvent(&e) != 0)
     {
       switch (e.type)
@@ -103,10 +121,15 @@ void App::Update()
 	  break;
 	  
 	case SDL_KEYDOWN:
-	  printf("KEYBOARD INPUT FROM KEY: %d \n", e.key.keysym.sym);
+	  //gInput.keyDownEvent(e);
 	  
 	  break;
+
+	case SDL_KEYUP:
+
+	  //gInput.keyUpEvent(e);
 	  
+	  break;
 	  
 	case SDL_MOUSEBUTTONDOWN:
 	  printf("MOUSE INPUT FROM KEY: %d \n", e.button.button);
@@ -127,7 +150,7 @@ void App::Update()
 
 
       stateManager.proccessInputs();
-      
+      //player.update(renderer);
       
       
     }
@@ -145,6 +168,8 @@ void App::Render()
   
   stateManager.render();
 
+  player->render(renderer);
+  
   text->renderText(Text::text::testSailor, Vec2{0,0});
   
   
@@ -163,7 +188,6 @@ void App::run()
 {
   //Do startup operations
   if ( startup() ) {
-
     Load();
     while (running)
       {
@@ -176,6 +200,12 @@ void App::run()
 
 void App::cleanup()
 {
+
+
+  delete text;
+
+  delete player;
+  
   
   SDL_FreeSurface(screenSurface);
   screenSurface = nullptr;
@@ -189,9 +219,6 @@ void App::cleanup()
   TTF_CloseFont(gFont);
   gFont = nullptr;
 
-  
-  
-  delete text;
   
   SDL_Quit();
   Mix_Quit();

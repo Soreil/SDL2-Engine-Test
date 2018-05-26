@@ -3,7 +3,7 @@
 
 
 void World::load(SDL_Renderer* r) {
-   worldEntities.init(r);
+   worldEntities.init();
   
 }
 
@@ -41,7 +41,7 @@ void World::proccessInputs() {
 
 
 void World::update(SDL_Renderer* r) {
-  worldEntities.update();
+  worldEntities.update(r);
 
   //Do collision routine around here maybe?
 

@@ -11,8 +11,9 @@
 
 #include "StateManager.h"
 
-#include "Sprite.h"
+#include "Input.h"
 
+#include "Player.h"
 
 class Entity;
 
@@ -28,15 +29,17 @@ class App {
   
   SDL_Rect windowRect{0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
 
-  StateManager stateManager;
-  
-  
   TTF_Font* gFont = nullptr;
   TextHandler* text = nullptr;  
+ 
+  StateManager stateManager;
   
-  Entity* player = nullptr;
+  Input gInput;
   
-  Mix_Music* mus;
+  //Mix_Music* mus;
+
+
+  Player* player = nullptr;
   
   //Event handler
   SDL_Event e;

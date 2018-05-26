@@ -15,13 +15,11 @@ SDL_Texture* Graphics::loadTexture(SDL_Renderer* renderer, std::string path) {
 
 
 SDL_Texture* Graphics::loadTextTexture ( const std::string text, SDL_Renderer* renderer,
-					 TTF_Font* font, SDL_Color* color ) {
+					 TTF_Font* font, SDL_Color color ) {
   
   // default color if color == NULL 
-  if ( !color )
-    color = new SDL_Color{0, 0, 0};
   
-  SDL_Surface* s = TTF_RenderText_Solid( font, text.c_str(), *color );
+  SDL_Surface* s = TTF_RenderText_Solid( font, text.c_str(), color );
   if (!s)
     printf( "Error! Cannot load text as surface! Err : %s\n", SDL_GetError() );
   
@@ -30,6 +28,5 @@ SDL_Texture* Graphics::loadTextTexture ( const std::string text, SDL_Renderer* r
     printf( "Error! Cannot convert TextSurface to Texture! Err: %s\n", SDL_GetError() );
   
   SDL_FreeSurface(s);
-  delete color;
   return t;
 }
