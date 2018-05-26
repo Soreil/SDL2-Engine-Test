@@ -13,7 +13,7 @@ namespace Graphics {
   
   
   SDL_Texture* loadTextTexture ( const std::string text, SDL_Renderer* renderer,
-				 TTF_Font* font, SDL_Color* color );
+				 TTF_Font* font, SDL_Color color );
     
   
   

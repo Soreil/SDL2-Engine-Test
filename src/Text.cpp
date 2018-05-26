@@ -5,20 +5,21 @@
 
 
 
-TextSprite::TextSprite( SDL_Renderer* r, const std::string text, SDL_Color* c, TTF_Font* f,
+TextSprite::TextSprite( SDL_Renderer* r, const std::string text, SDL_Color c, TTF_Font* f,
 			int x, int y ) {
+
   
   texture = Graphics::loadTextTexture( text, r, f, c );
+  
   renderQuad = new SDL_Rect{x, y};
-  SDL_QueryTexture( texture, NULL, NULL, &renderQuad->w, &renderQuad->h );
 
-  delete c;
+  SDL_QueryTexture( texture, NULL, NULL, &renderQuad->w, &renderQuad->h );
   
 }
 
 
 
-TextSprite::TextSprite( SDL_Renderer* r, const std::string text, int textSize, SDL_Color* c, TTF_Font* f,
+TextSprite::TextSprite( SDL_Renderer* r, const std::string text, int textSize, SDL_Color c, TTF_Font* f,
 			int x, int y, int w, int h ) {
 
   texture = Graphics::loadTextTexture( text, r, f, c );
@@ -39,32 +40,18 @@ void TextSprite::render(SDL_Renderer* r) {
 
 TextSprite::~TextSprite() {
   SDL_DestroyTexture(texture);
-  delete texture;
+  texture = nullptr;
   delete renderQuad;
 }
 
 
-
-TextHandler::TextHandler(TTF_Font* f, SDL_Renderer* r) {
-  font = f;
-  renderer = r;
-  
-  //rect = new SDL_Rect{0, 0, 0, 0};
-  
-  // gameText[0] = Gr
-
-  addText( "hello, sailor!", new SDL_Color{255,255,255}, Vec2{0,0} );
-  
-}
-
-
-void TextHandler::addText(std::string text, SDL_Color* c, Vec2 position) {
+void TextHandler::addText(std::string text, SDL_Color c, Vec2 position) {
   gameText.push_back( new TextSprite(renderer, text, c, font, position.x, position.y ) );
   printf( "Added text to gameText vector!\n" );
 }
 
 
-void TextHandler::addText( std::string text, SDL_Color* c, Vec2 position, int w, int h ) {
+void TextHandler::addText( std::string text, SDL_Color c, Vec2 position, int w, int h ) {
   //  gameText.push_back( Graphics::loadTextTexture(text, renderer, font, c) );
   printf("Added text to gameArray!\n");
 
@@ -80,16 +67,22 @@ void TextHandler::renderText( Text::text textKey, Vec2 position ) {
   }
   
   //    SDL_Texture* ->  gameText[textKey]
-  
 }
 
+TextHandler::TextHandler(TTF_Font* f, SDL_Renderer* r) {
+  font = f;
+  renderer = r;
+
+  addText( "hello, sailor!", SDL_Color{255,0,255}, Vec2{0,0} );  
+}
 
 TextHandler::~TextHandler() {
-   font = nullptr;
-   for (auto t : gameText) {
-     delete t;
-     t = nullptr;
-   }
+  renderer = nullptr;
+  font = nullptr;
+  for (auto t : gameText) {
+    delete t;
+    t = nullptr;
+  }
 }
 
 

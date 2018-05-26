@@ -36,7 +36,7 @@ class App {
   
   Input gInput;
   
-  Mix_Music* mus;
+  //Mix_Music* mus;
 
 
   Player player;
