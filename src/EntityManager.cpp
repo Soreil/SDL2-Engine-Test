@@ -14,7 +14,7 @@ bool EntityManager::init() {
   for (int i = 0; i < MAX_ENTITIES; i++) {
     entities[i] = nullptr;
   }
-  
+  return true;
 }
 
 
@@ -61,13 +61,15 @@ void EntityManager::addEntity(Entity* entity) {
 
 EntityManager::EntityManager() {
   if ( !init() ) {
-    printf("Failed!\n");
+    printf("EntityManager init() Failed!\n");
   }
 }
 
 EntityManager::~EntityManager() {
   for (int i = 0; i < MAX_ENTITIES; i++) {
-    delete entities[i];
-    entities[i] = nullptr;
+    if (i) {
+      delete entities[i];
+      entities[i] = nullptr;
+    }
   }
 }

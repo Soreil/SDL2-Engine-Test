@@ -27,16 +27,15 @@ class Entity
   Sprite* sprite = nullptr;
 
   virtual void load() = 0;
+
+  virtual void proccessInputs() = 0;
   
   virtual void update(SDL_Renderer* r) = 0;
   
   virtual void render(SDL_Renderer* r) = 0;
   
 
-  
-  Entity(); 
+  Entity();
   ~Entity();
-  
-  
   
 };
