@@ -34,7 +34,7 @@ class App {
  
   StateManager stateManager;
   
-  Input gInput;
+  Input* gInput = nullptr;
   
   //Mix_Music* mus;
 

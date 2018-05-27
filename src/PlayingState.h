@@ -8,6 +8,10 @@
 #include "EntityManager.h"
 
 class PlayingState : public State {
+ private:
+
+  Input* input_ = nullptr;
+  
  public:
 
   EntityManager entities;
@@ -23,7 +27,7 @@ class PlayingState : public State {
   void render(SDL_Renderer* r);
 
 
-  PlayingState();
+  PlayingState(Input* input);
   ~PlayingState();
   
   

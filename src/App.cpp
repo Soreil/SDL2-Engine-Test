@@ -70,8 +70,13 @@ bool App::startup()
   //INIT ENGINE SYSTEMS
   
   text = new TextHandler(gFont, renderer);
-  stateManager.init(renderer);
 
+  gInput = new Input();
+
+  stateManager.init(renderer, gInput);
+
+  
+  
   
   //If everything is successfully intialized, true is returned here
   return true;
@@ -108,7 +113,7 @@ void App::Update()
   
   //Wipe last frame's input information
 
-  //gInput.newFrameWipe();
+  gInput->newFrameWipe();
   
   while (SDL_PollEvent(&e) != 0)
     {
@@ -121,13 +126,13 @@ void App::Update()
 	  break;
 	  
 	case SDL_KEYDOWN:
-	  //gInput.keyDownEvent(e);
+	  gInput->keyDownEvent(e);
 	  
 	  break;
 
 	case SDL_KEYUP:
 
-	  //gInput.keyUpEvent(e);
+	  gInput->keyUpEvent(e);
 	  
 	  break;
 	  
@@ -202,6 +207,9 @@ void App::cleanup()
 {
   
   delete text;
+
+  delete gInput;
+  gInput = nullptr;
 
   
   SDL_FreeSurface(screenSurface);

@@ -4,6 +4,8 @@
 
 #include <vector>
 
+#include "Input.h"
+
 
 class State;
 
@@ -16,6 +18,10 @@ enum GameState {
   
   
 class StateManager {
+ private:
+
+  Input* input_ = nullptr;
+  
  public:
   
   SDL_Renderer* renderer;
@@ -24,7 +30,7 @@ class StateManager {
   
   State* currentState = nullptr;
 
-  bool init(SDL_Renderer* r);
+  bool init(SDL_Renderer* r, Input* input);
 
   void proccessInputs();
   

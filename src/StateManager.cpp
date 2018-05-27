@@ -7,8 +7,9 @@
 
 #include "MainMenuState.h"
 
-bool StateManager::init(SDL_Renderer* r) {
+bool StateManager::init(SDL_Renderer* r, Input* input) {
   renderer = r;
+  input_ = input;
 
   //Load default state (For testing purposes it's TestState)
 
@@ -20,7 +21,7 @@ bool StateManager::init(SDL_Renderer* r) {
   }
   
   states[ GameState::mainMenu ]    = new MainMenuState();
-  states[ GameState::playing ]     = new PlayingState();
+  states[ GameState::playing ]     = new PlayingState(input);
   states[ GameState::test ]        = new TestState();
   
   //currentState = stateContainer[ GameState::testState ];
@@ -85,7 +86,7 @@ StateManager::StateManager() {
 StateManager::~StateManager() {
   currentState = nullptr;
   renderer = nullptr;
-    
+  input_ = nullptr;
 
   for ( int i = 0; i < STATE_COUNT; i++  ) {
     if (states[i])

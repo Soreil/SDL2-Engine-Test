@@ -8,6 +8,13 @@
 #include "Input.h"
 
 
+enum Direction {
+  UP = 0,
+  DOWN,
+  LEFT,
+  RIGHT
+};
+
 class Player : public Entity {
  private:
   Input* input_ = nullptr;
@@ -16,17 +23,24 @@ class Player : public Entity {
 
  public:
 
-  void load() {}
+  /*
+  void startMovingUp();
+  void startMovingDown();
+  void startMovingLeft();
+  void startMovingRight();
+  void stopMoving();
+  */
   
-  void load(Input& input);
-
+  
+  void load();
+  
   void proccessInputs();
   
   void update(SDL_Renderer* r);
 
   void render(SDL_Renderer *r);
   
-  Player(SDL_Renderer* r, Vec2* position, int w, int h);
+  Player(SDL_Renderer* r, Vec2* position, int w, int h, Input* input);
   ~Player();
   
 
