@@ -84,11 +84,11 @@ bool App::startup()
 void App::Load()
 {
 
-  player = new Player( renderer, new Vec2{0,0}, 32, 32);
+  
   
   stateManager.load();
 
-  //player.load(gInput);
+  
 
 }
 
@@ -150,7 +150,7 @@ void App::Update()
 
 
       stateManager.proccessInputs();
-      //player.update(renderer);
+      
       
       
     }
@@ -168,7 +168,7 @@ void App::Render()
   
   stateManager.render();
 
-  player->render(renderer);
+  
   
   text->renderText(Text::text::testSailor, Vec2{0,0});
   
@@ -200,12 +200,9 @@ void App::run()
 
 void App::cleanup()
 {
-
-
+  
   delete text;
 
-  delete player;
-  
   
   SDL_FreeSurface(screenSurface);
   screenSurface = nullptr;

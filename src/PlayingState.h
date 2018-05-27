@@ -3,20 +3,16 @@
 #include <SDL.h>
 
 #include "State.h"
-#include "World.h"
-
 #include "StateManager.h"
-
-#include "Sprite.h"
-
 #include "Player.h"
+#include "EntityManager.h"
 
 class PlayingState : public State {
  public:
 
-  World world;
+  EntityManager entities;
 
-  Sprite* testSprite = nullptr;
+  
   
   bool load(SDL_Renderer* r, StateManager* sm);
 

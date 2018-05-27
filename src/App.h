@@ -38,8 +38,6 @@ class App {
   
   //Mix_Music* mus;
 
-
-  Player* player = nullptr;
   
   //Event handler
   SDL_Event e;

@@ -20,18 +20,14 @@ bool StateManager::init(SDL_Renderer* r) {
   }
   
   states[ GameState::mainMenu ]    = new MainMenuState();
-  states[ GameState::playing ] = new PlayingState();
-  states[ GameState::test ]    = new TestState();
+  states[ GameState::playing ]     = new PlayingState();
+  states[ GameState::test ]        = new TestState();
   
   //currentState = stateContainer[ GameState::testState ];
 
   currentState = states [ GameState::mainMenu ];
-
-  
   
 }
-
-
 
 void StateManager::load() {
   
@@ -42,7 +38,10 @@ void StateManager::load() {
   for ( int i = 0; i < STATE_COUNT; i++ ) {
     if ( states[i]->load(renderer, this) ) {
       states[i]->loaded = true;
-    }  
+    }
+    else {
+      printf("Error!: Couldn't load state %d! \n", i);
+    } 
   }
 
   
@@ -69,8 +68,9 @@ void StateManager::render() {
 void StateManager::switchState(int state) {
 
   if ( currentState != states[state] ) {
-    currentState = states[state];
-  } else {
+    currentState = states[state];;
+  }
+  else {
     printf("Cannot switch states! new state == current State!\n");
   }
   

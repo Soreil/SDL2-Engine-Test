@@ -3,8 +3,12 @@
 
 
 void World::load(SDL_Renderer* r) {
-   worldEntities.init();
+   
   
+}
+
+void World::initEntities() {
+  worldEntities.init();
 }
 
 void World::proccessInputs() {
