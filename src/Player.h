@@ -34,9 +34,7 @@ class Player : public Entity {
   
   
   void load();
-  
-  void proccessInputs();
-  
+ 
   void update(SDL_Renderer* r);
 
   void render(SDL_Renderer *r);

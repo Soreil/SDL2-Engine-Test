@@ -28,8 +28,6 @@ Player::Player( SDL_Renderer* r, Vec2* position, int w, int h) {
 }
 
 Player::~Player( ) {
-  input_ = nullptr;
-
   delete sprite;
   sprite = nullptr;
 }
