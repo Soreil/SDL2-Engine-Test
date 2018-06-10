@@ -14,8 +14,8 @@ bool TestState::load(SDL_Renderer* r, StateManager* sm ) {
   return true;
 }
 
-void TestState::proccessInputs(  ) {
-  testWorld.proccessInputs();
+void TestState::update(SDL_Renderer* r) {
+  testWorld.update(r);
 
   const Uint8* keyState = SDL_GetKeyboardState(NULL);
 
@@ -25,11 +25,6 @@ void TestState::proccessInputs(  ) {
       stateManager->switchState( GameState::playing );
     }
   }
-
-}
-
-void TestState::update(SDL_Renderer* r) {
-  testWorld.update(r);
 }
 
 void TestState::render(SDL_Renderer* r) {

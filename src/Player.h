@@ -8,6 +8,9 @@
 #include "Input.h"
 
 
+const int SPEED = 5;
+
+
 enum Direction {
   UP = 0,
   DOWN,

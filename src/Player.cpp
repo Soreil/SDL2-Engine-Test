@@ -18,19 +18,19 @@ void Player::update(SDL_Renderer* r) {
 
   //  if (input_)
     if ( input_->isKeyPressed(SDL_SCANCODE_UP) ) {
-      sprite->renderQuad->y -= 2;
+      sprite->renderQuad->y -= SPEED;
       //printf("UP UP DOWN DOWN LEFT RIGHT LEFT RIGHT A B START \n");
     }
     if ( input_->isKeyPressed(SDL_SCANCODE_DOWN) ) {
-      sprite->renderQuad->y += 2;
+      sprite->renderQuad->y += SPEED;
     }
 
     if ( input_->isKeyPressed(SDL_SCANCODE_LEFT) ) {
-      sprite->renderQuad->x -= 2;
+      sprite->renderQuad->x -= SPEED;
     }
 
     if ( input_->isKeyPressed(SDL_SCANCODE_RIGHT) ) {
-      sprite->renderQuad->x += 2;
+      sprite->renderQuad->x += SPEED;
     }
 
 }

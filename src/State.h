@@ -13,15 +13,10 @@ class State {
   bool loaded = false;
 
   virtual bool load(SDL_Renderer* r, StateManager* sm ) = 0;
-
-
-  virtual void proccessInputs() = 0;
   
   virtual void update(SDL_Renderer* r) = 0;
 
-
   virtual void render(SDL_Renderer* r) = 0;
-
 
   State(){}
   ~State(){}

@@ -14,8 +14,8 @@ bool MainMenuState::load(SDL_Renderer* r, StateManager* sm) {
   return true;
 }
 
-void MainMenuState::proccessInputs() {
 
+void MainMenuState::update(SDL_Renderer* r) {
   const Uint8* keyState = SDL_GetKeyboardState(NULL);
   
   if ( keyState[ SDL_SCANCODE_RETURN ] ) {
@@ -23,13 +23,7 @@ void MainMenuState::proccessInputs() {
       printf("Switching states!\n");
       stateManager->switchState( GameState::playing );
     }
-  }
-  
-  
-}
-
-void MainMenuState::update(SDL_Renderer* r) {
-
+  }  
 }
 
 void MainMenuState::render(SDL_Renderer* r) {

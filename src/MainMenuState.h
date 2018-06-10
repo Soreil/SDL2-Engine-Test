@@ -13,8 +13,6 @@ class MainMenuState : public State {
   
   bool load(SDL_Renderer* r, StateManager* sm);
 
-  void proccessInputs();
-  
   void update(SDL_Renderer* r);
 
   void render(SDL_Renderer* r);

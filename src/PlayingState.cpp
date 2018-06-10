@@ -15,10 +15,6 @@ bool PlayingState::load(SDL_Renderer* r, StateManager* sm) {
   return true;
 }
 
-void PlayingState::proccessInputs() {
-  
-}
-
 void PlayingState::update(SDL_Renderer* r) {
   entities.update(r);
 }

@@ -46,7 +46,7 @@ bool App::startup()
   }
   
   renderer = SDL_CreateRenderer(
-				window, -1, SDL_RENDERER_ACCELERATED);
+				window, -1, SDL_RENDERER_ACCELERATED );
 
   if (!renderer) {
     printf(" Renderer Couldn't be loaded! Err: %s \n", SDL_GetError() );
@@ -154,10 +154,6 @@ void App::Update()
       //SDL_PumpEvents();
 
 
-      stateManager.proccessInputs();
-      
-      
-      
     }
 
   stateManager.update();

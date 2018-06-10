@@ -49,12 +49,6 @@ void StateManager::load() {
 }
 
 
-void StateManager::proccessInputs() {
-  if (currentState)
-    currentState->proccessInputs();
-  
-}
-
 void StateManager::update() {
   if (currentState)
     currentState->update(renderer);

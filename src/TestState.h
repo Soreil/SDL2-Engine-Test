@@ -15,8 +15,6 @@ class TestState : public State {
   World testWorld;  
   
   bool load(SDL_Renderer* r, StateManager* sm );
-
-  void proccessInputs();
   
   void update(SDL_Renderer* r);
 

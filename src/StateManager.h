@@ -31,8 +31,6 @@ class StateManager {
   State* currentState = nullptr;
 
   bool init(SDL_Renderer* r, Input* input);
-
-  void proccessInputs();
   
   void load();
   
