@@ -3,16 +3,8 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
-#include "EntityManager.h"
-
 #include "Text.h"
-
-#include "World.h"
-
-#include "StateManager.h"
-
 #include "Input.h"
-
 #include "Player.h"
 
 class Entity;
@@ -32,10 +24,6 @@ class App {
   TTF_Font* gFont = nullptr;
   TextHandler* text = nullptr;  
  
-  StateManager stateManager;
-  
-  Input* gInput = nullptr;
-  
   //Mix_Music* mus;
 
   

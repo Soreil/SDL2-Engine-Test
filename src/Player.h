@@ -5,7 +5,6 @@
 #include <SDL.h>
 
 #include "Entity.h"
-#include "Input.h"
 
 
 const int SPEED = 5;
@@ -20,7 +19,6 @@ enum Direction {
 
 class Player : public Entity {
  private:
-  Input* input_ = nullptr;
 
   const std::string textureName = "resources/ass.bmp";
 
@@ -43,7 +41,7 @@ class Player : public Entity {
 
   void render(SDL_Renderer *r);
   
-  Player(SDL_Renderer* r, Vec2* position, int w, int h, Input* input);
+  Player(SDL_Renderer* r, Vec2* position, int w, int h );
   ~Player();
   
 

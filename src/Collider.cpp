@@ -56,7 +56,7 @@ Vec2 Collider::getCollisionArea(Collider* collidable) {
 }
 
 
-Collider::Collider( int32 _x, int32 _y, int32 _w, int32 _h ) {
+Collider::Collider( int32_t _x, int32_t _y, int32_t _w, int32_t _h ) {
   x = _x;
   y = _y;
   w = _w;

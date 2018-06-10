@@ -10,8 +10,6 @@
 
 #include <stdint.h>
 
-typedef uint32_t Uint32;
-
 
 class Entity
 {

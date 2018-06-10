@@ -2,9 +2,6 @@
 #include <stdio.h>
 #include "Player.h"
 #include "Entity.h"
-#include "Input.h"
-#include "TestState.h"
-#include "PlayingState.h"
 #include "Vector2.h"
 
 App::App()
@@ -69,15 +66,7 @@ bool App::startup()
 
   //INIT ENGINE SYSTEMS
   
-  text = new TextHandler(gFont, renderer);
-
-  gInput = new Input();
-
-  stateManager.init(renderer, gInput);
-
-  
-  
-  
+  text = new TextHandler(gFont, renderer);  
   //If everything is successfully intialized, true is returned here
   return true;
 }
@@ -90,31 +79,12 @@ void App::Load()
 {
 
   
-  
-  stateManager.load();
-
-  
 
 }
 
-/*
-  This is where the major updating/game loop happens
-  
-  Ideally, update logic should be called before physics and world updates
 
-  TODO(sweets): Consider creating a 'proccessInputs()' function inside the application structure
-                to keep the update logic from getting too cluttered
-  
-*/
 void App::Update()
-{  
-  //SDL_GetMouseState(&mouse_position.x, &mouse_position.y);
-
-  
-  //Wipe last frame's input information
-
-  gInput->newFrameWipe();
-  
+{    
   while (SDL_PollEvent(&e) != 0)
     {
       switch (e.type)
@@ -126,18 +96,15 @@ void App::Update()
 	  break;
 	  
 	case SDL_KEYDOWN:
-	  gInput->keyDownEvent(e);
 	  
 	  break;
-
+	  
 	case SDL_KEYUP:
-
-	  gInput->keyUpEvent(e);
 	  
 	  break;
 	  
 	case SDL_MOUSEBUTTONDOWN:
-	  printf("MOUSE INPUT FROM KEY: %d \n", e.button.button);
+	  
 	  break;
 	  
 	case SDL_MOUSEBUTTONUP:
@@ -149,15 +116,8 @@ void App::Update()
 	  
 	  break;
 	}
-
-      //updates keystate array
-      //SDL_PumpEvents();
-
-
     }
-
-  stateManager.update();
-    
+  
 }
 
 
@@ -165,10 +125,6 @@ void App::Update()
 void App::Render()
 {
   SDL_RenderClear(renderer);			//BEGINS RENDERING
-  
-  
-  stateManager.render();
-
   
   
   text->renderText(Text::text::testSailor, Vec2{0,0});
@@ -203,10 +159,6 @@ void App::cleanup()
 {
   
   delete text;
-
-  delete gInput;
-  gInput = nullptr;
-
   
   SDL_FreeSurface(screenSurface);
   screenSurface = nullptr;

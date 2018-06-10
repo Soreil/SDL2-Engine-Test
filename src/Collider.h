@@ -5,12 +5,10 @@
 
 #include "Vector2.h"
 
-typedef int32_t int32;
-
 class Collider {
  public:
   SDL_Rect b_box;
-  int32 x, y, w, h;
+  int32_t x, y, w, h;
  
   void update(Entity* entity);
 
@@ -18,7 +16,7 @@ class Collider {
 
   Vec2 getCollisionArea( Collider* collidable );
   
-  Collider( int32 _x, int32 _y, int32 _w, int32 _h  );
+  Collider( int32 _x, int32_t _y, int32_t _w, int32_t _h  );
   ~Collider();
   
   
