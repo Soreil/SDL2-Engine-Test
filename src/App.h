@@ -7,8 +7,14 @@
 #include "Input.h"
 #include "Player.h"
 
-class Entity;
 
+enum Gamestate {
+  menu,
+  playing,
+  test
+};
+
+class Entity;
 
 class App {
  public:
