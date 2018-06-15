@@ -10,6 +10,11 @@
 
 *.bat~
 
+*.txt~
+
+#don't know if this works, hopefully ignores files like "MenuState~"
+*~
+
 *.gitignore~
 
 *makefile~
