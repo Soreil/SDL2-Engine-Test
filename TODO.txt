@@ -1,0 +1,11 @@
+
+
+
+- Test if DT will provide smooth movement
+- Implement other states
+
+- Test collisions implementation
+
+- In game states? (Sub-states inside PlayingState)
+
+- Maybe do some drawing up of the shops

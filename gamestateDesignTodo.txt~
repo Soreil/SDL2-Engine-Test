@@ -1,0 +1,12 @@
+
+
+
+
+transition state:
+
+enter transition state,
+fade to black,
+wait until new state returns successful load flag,
+if newstate load is failure,
+log error,
+return nullptr;

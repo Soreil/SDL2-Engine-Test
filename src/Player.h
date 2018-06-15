@@ -3,11 +3,10 @@
 */
 #pragma once
 #include <SDL.h>
-
 #include "Entity.h"
+#include <cstdint>
 
-
-const int SPEED = 5;
+const int SPEED = 1;
 
 
 enum Direction {
@@ -22,6 +21,10 @@ class Player : public Entity {
 
   const std::string textureName = "resources/ass.bmp";
 
+  Direction currDirection = Direction::UP;
+  bool moving = false;
+  
+
  public:
 
   /*
@@ -34,8 +37,10 @@ class Player : public Entity {
   
   
   void load();
- 
-  void update(SDL_Renderer* r);
+
+  void handleInputs();
+  
+  void update(float dt);
 
   void render(SDL_Renderer *r);
   

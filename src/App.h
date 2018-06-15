@@ -37,9 +37,22 @@ class App {
   SDL_Event e;
   
   bool running;
+
+  //used for calculating DT
+  int currTicks = 0;
+  int prevTicks = 0;
   
   const int FRAMERATE = 60;
-  int frametime = 0;  
+  
+
+
+
+  Player* player = nullptr;
+
+
+
+
+
   
   App();
   

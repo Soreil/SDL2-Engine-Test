@@ -1,0 +1,13 @@
+
+transition state:
+
+possible transition to new state function, could go like so:
+
+enter transition state,
+fade to black,
+wait until new state returns successful load flag,
+if successful, return pointer to loaded state,
+
+if newstate load is failure,
+log error,
+return nullptr;

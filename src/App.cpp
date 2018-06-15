@@ -1,6 +1,5 @@
 #include "App.h"
 #include <stdio.h>
-#include "Player.h"
 #include "Entity.h"
 #include "Vector2.h"
 
@@ -77,9 +76,7 @@ bool App::startup()
 */
 void App::Load()
 {
-
-  
-
+  player = new Player(renderer, new Vec2{100,100}, 100, 100 );
 }
 
 
@@ -117,7 +114,21 @@ void App::Update()
 	  break;
 	}
     }
-  
+
+
+  //DT CALCULATION
+
+  /*
+  currTicks = SDL_GetTicks();
+  float deltaTime = (currTicks - prevTicks) / 1000;
+ 
+  printf("currTicks: %d\n deltaTime: %d\n prevTicks:  %d\n\n\n", currTicks, deltaTime, prevTicks);
+  prevTicks = currTicks;
+  */  
+
+
+  player->update(deltaTime);
+
 }
 
 
@@ -125,8 +136,12 @@ void App::Update()
 void App::Render()
 {
   SDL_RenderClear(renderer);			//BEGINS RENDERING
-  
-  
+
+  //ENTITY RENDERING
+
+  player->render(renderer);
+
+  // UI RENDERING
   text->renderText(Text::text::testSailor, Vec2{0,0});
   
   
@@ -157,6 +172,9 @@ void App::run()
 
 void App::cleanup()
 {
+
+  delete player;
+  player = nullptr;
   
   delete text;
   

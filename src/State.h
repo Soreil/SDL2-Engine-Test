@@ -4,9 +4,12 @@
 struct State {
 public:
 
-  virtual void handleEvents();
+  virtual void onEnterState() = 0;
+  virtual void onExitState() = 0;
+  
+  virtual void handleEvents() = 0;
 
-  virtual void update();
-  virtual void render();
+  virtual void update() = 0;
+  virtual void render() = 0;
   
 };

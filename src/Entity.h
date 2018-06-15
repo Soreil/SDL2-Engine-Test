@@ -26,9 +26,9 @@ class Entity
 
   virtual void load() = 0;
 
-  virtual void proccessInputs() = 0;
+  virtual void handleInputs() = 0;
   
-  virtual void update(SDL_Renderer* r) = 0;
+  virtual void update(float dt) = 0;
   
   virtual void render(SDL_Renderer* r) = 0;
   
