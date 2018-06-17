@@ -1,7 +1,8 @@
+#pragma once
 #include <SDL.h>
 
 
-struct State {
+class State {
 public:
 
   virtual void onEnterState() = 0;
@@ -9,7 +10,7 @@ public:
   
   virtual void handleEvents() = 0;
 
-  virtual void update() = 0;
-  virtual void render() = 0;
+  virtual void update(float deltaTime) = 0;
+  virtual void render(SDL_Renderer* r) = 0;
   
 };

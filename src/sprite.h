@@ -11,12 +11,11 @@ class Sprite {
   SDL_Rect* renderQuad = nullptr;
 
   void render(SDL_Renderer* r);
-  
+
+  void setTexture(SDL_Renderer* r, const std::string textureName);
 
   //Sprite();
   Sprite(SDL_Renderer* r, const std::string textureName, Vec2* position, SDL_Rect* rQuad);
-   
-    
     
   
   ~Sprite();

@@ -16,7 +16,7 @@ class Collider {
 
   Vec2 getCollisionArea( Collider* collidable );
   
-  Collider( int32 _x, int32_t _y, int32_t _w, int32_t _h  );
+  Collider( int32_t _x, int32_t _y, int32_t _w, int32_t _h  );
   ~Collider();
   
   

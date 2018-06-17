@@ -8,12 +8,6 @@
 #include "Player.h"
 
 
-enum Gamestate {
-  menu,
-  playing,
-  test
-};
-
 class Entity;
 
 class App {
@@ -41,6 +35,8 @@ class App {
   //used for calculating DT
   int currTicks = 0;
   int prevTicks = 0;
+
+  float deltaTime;
   
   const int FRAMERATE = 60;
   

@@ -1,8 +1,15 @@
 
 
 
-- Test if DT will provide smooth movement
-- Implement other states
+- Test if DT will provide smooth movement (SOLVED)
+
+- Figure out movement issue [-]
+  -- It's an issue with DT calculation, OF COURSE
+
+
+- Implement other states [-]
+
+- Implement a timer class (which will help fix DT issues)
 
 - Test collisions implementation
 

@@ -3,13 +3,23 @@
 
 
 void Sprite::render(SDL_Renderer* r) {
-  SDL_RenderCopy(r, texture, NULL, renderQuad);
+  if (texture)
+    SDL_RenderCopy(r, texture, NULL, renderQuad);
+  
+}
+
+
+void Sprite::setTexture(SDL_Renderer* r, const std::string textureName) {
+  if (r)
+    texture = Graphics::loadTexture(r, textureName);
 }
 
 
 Sprite::Sprite(SDL_Renderer* r, const std::string textureName, Vec2* position, SDL_Rect* rQuad) {
-  texture = Graphics::loadTexture(r,textureName);
-
+  if (r)
+    texture = Graphics::loadTexture(r,textureName);
+  
+  
   if (!texture) {
     printf("Error loading texture for sprite class!\n" );
       }

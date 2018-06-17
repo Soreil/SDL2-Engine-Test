@@ -1,7 +1,7 @@
 #include "Vector2.h"
 
 
-Vec2::Vec2(int32 x_, int32 y_)
+Vec2::Vec2(int32_t x_, int32_t y_)
   : x(x_),
     y(y_)
 {} 

@@ -3,14 +3,12 @@
 #include <cstdint>
 #include <math.h>
 
-typedef int32_t int32;
-
 struct Vec2 {
-  int32 x, y;
+  int32_t x, y;
 
   Vec2() {}
   
-  Vec2(int32 x_, int32 y_);
+  Vec2(int32_t x_, int32_t y_);
   
   void normalize();
   /*

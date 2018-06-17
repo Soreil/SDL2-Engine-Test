@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "Entity.h"
 #include "Vector2.h"
+#include <iostream>
 
 App::App()
 {
@@ -117,7 +118,7 @@ void App::Update()
 
 
   //DT CALCULATION
-
+  
   /*
   currTicks = SDL_GetTicks();
   float deltaTime = (currTicks - prevTicks) / 1000;
@@ -126,9 +127,20 @@ void App::Update()
   prevTicks = currTicks;
   */  
 
+  prevTicks = currTicks;
+  currTicks = SDL_GetTicks();
+ 
+  deltaTime =  currTicks - prevTicks;
+
+  std::cout << deltaTime << std::endl;
+ 
+  deltaTime /= 1000.f;
+
+  std::cout << deltaTime << std::endl;
 
   player->update(deltaTime);
 
+  
 }
 
 

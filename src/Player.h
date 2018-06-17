@@ -6,8 +6,6 @@
 #include "Entity.h"
 #include <cstdint>
 
-const int SPEED = 1;
-
 
 enum Direction {
   UP = 0,
@@ -24,7 +22,8 @@ class Player : public Entity {
   Direction currDirection = Direction::UP;
   bool moving = false;
   
-
+  float speed = 1.0f;
+  
  public:
 
   /*

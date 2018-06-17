@@ -36,34 +36,57 @@ void Player::handleInputs() {
 }
 
 void Player::update(float dt) {
-  handleInputs();  
+  //handleInputs();  
 
+  /*
   if ( moving ) {
     switch (currDirection) {
       
     case Direction::DOWN:
-      position.y += SPEED * dt;
+      position.y += (speed * dt);
+      
       break;
 
     case Direction::UP:
-      position.y -= SPEED * dt;
+      position.y -= (speed * dt);
       break;
 
     case Direction::LEFT:
-      position.x -= SPEED * dt;
+      position.x -= (speed * dt);
       break;
 
     case Direction::RIGHT:
-      position.x += SPEED * dt;
+      position.x += (speed);
+      
       break; 
     }
+    }*/
+
+
+
+  const Uint8* keystate = SDL_GetKeyboardState(NULL);
+  
+  if ( keystate[SDL_SCANCODE_UP] ) {
+    position.y -= speed;
   }
+  if ( keystate[SDL_SCANCODE_DOWN] ) {
+    position.y += speed;
+  }
+  if ( keystate[SDL_SCANCODE_LEFT] ) {
+    position.x -= speed;
+  }
+  
+  if ( keystate[SDL_SCANCODE_RIGHT] ) {
+    position.x += speed;
+  }
+ 
 }
 
 
+
 void Player::render(SDL_Renderer* r) {
-  sprite->renderQuad->x = position.x;
-    sprite->renderQuad->y = position.y;
+  sprite->renderQuad->x = position.x
+  sprite->renderQuad->y = position.y;
   sprite->render(r);
 }
 

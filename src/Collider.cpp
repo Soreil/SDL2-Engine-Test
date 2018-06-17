@@ -22,11 +22,11 @@ bool Collider::isColliding(Collider* collidable) {
 
 Vec2 Collider::getCollisionArea(Collider* collidable) {
   
-  int32 maxLength;
-  int32 currLength;
+  int32_t maxLength;
+  int32_t currLength;
 
-  int32 maxHeight;
-  int32 currHeight;
+  int32_t maxHeight;
+  int32_t currHeight;
 
   //TODO(sweets): Look into using absoloute values + taking negative
   
@@ -48,8 +48,8 @@ Vec2 Collider::getCollisionArea(Collider* collidable) {
     currHeight = ( collidable->y + (-collidable ->w) ) - (this->y) ;
   }
 
-  int32 collArea_X = currLength - maxLength;       //Returns - if colliding from the left
-  int32 collArea_Y = currHeight - maxHeight;       //Returns - if colliding from the top
+  int32_t collArea_X = currLength - maxLength;       //Returns - if colliding from the left
+  int32_t collArea_Y = currHeight - maxHeight;       //Returns - if colliding from the top
 
 
   return Vec2( collArea_X, collArea_Y );    

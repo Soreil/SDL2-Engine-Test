@@ -1,3 +1,4 @@
+#pragma once
 #include "State.h"
 
 #include <vector>
@@ -10,14 +11,22 @@ enum GameState {
   TRANSITION
 };
 
+const uint8_t STATE_COUNT = 5;
+
 class GameStateManager {
  private:
-  State* currentState = nullptr;
-  State* prevState    = nullptr;
+
+  State* states[STATE_COUNT];
+  
+  State* currStatePtr  = nullptr;
+  State* prevStatePtr = nullptr;
+
+  GameState currState;
+  GameState prevState;
 
  public:
 
-  void switchState(State* newState);
+  void switchState(GameState newState);
   /*
     if (currentState != newState) {
       currentState = newState;
@@ -28,9 +37,12 @@ class GameStateManager {
     }
    */
 
-  void update();
+  void update(float deltaTime);
 
-  void render();
+  void render(SDL_Renderer *r);
+
   
+  GameStateManager();
+  ~GameStateManager();
   
 };
