@@ -42,7 +42,7 @@ class GameStateManager {
   void render(SDL_Renderer *r);
 
   
-  GameStateManager();
+  GameStateManager(SDL_Renderer* r);
   ~GameStateManager();
   
 };

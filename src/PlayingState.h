@@ -2,14 +2,9 @@
 
 #include <SDL.h>
 #include "State.h"
-
 #include "Sprite.h"
 
-class MenuState : public State {
- private:
-  Sprite* backgroundLogo = nullptr;
-  const std::string bgLogoName = "recources/menuTexture.bmp";
-
+class PlayingState : public State {
  public:
 
   void onEnterState();
@@ -20,7 +15,7 @@ class MenuState : public State {
   void update(float deltaTime);
   void render(SDL_Renderer* r);
 
-  MenuState(SDL_Renderer* r);
-  ~MenuState();
+  PlayingState();
+  ~PlayingState();
   
 };

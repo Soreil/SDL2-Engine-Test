@@ -85,7 +85,7 @@ void Player::update(float dt) {
 
 
 void Player::render(SDL_Renderer* r) {
-  sprite->renderQuad->x = position.x
+  sprite->renderQuad->x = position.x;
   sprite->renderQuad->y = position.y;
   sprite->render(r);
 }

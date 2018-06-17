@@ -7,7 +7,9 @@
   -- It's an issue with DT calculation, OF COURSE
 
 
-- Implement other states [-]
+- Implement other states [-] (Implemented a playing state)
+
+
 
 - Implement a timer class (which will help fix DT issues)
 

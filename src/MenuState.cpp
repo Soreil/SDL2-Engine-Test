@@ -17,7 +17,7 @@ void MenuState::update(float deltaTime) {
 }
 
 void MenuState::render(SDL_Renderer *r) {
-  backgroundLogo.render(r);
+  backgroundLogo->render(r);
 }
 
 MenuState::MenuState(SDL_Renderer* r) {

@@ -24,16 +24,16 @@ void GameStateManager::switchState(GameState newState) {
   }
 }
 
-void GameStateManager::update() {
-  currStatePtr->update();
+void GameStateManager::update(float deltaTime) {
+  currStatePtr->update(deltaTime);
 }
 
 
-void GameStateManager::render() {
-  currStatePtr->render();
+void GameStateManager::render(SDL_Renderer* r) {
+  currStatePtr->render(r);
 }
 
-GameStateManager::GameStateManager() {
+GameStateManager::GameStateManager(SDL_Renderer* r) {
 
   //clean the array at init
   for (int i = 0; i < STATE_COUNT; i++) {
@@ -41,7 +41,7 @@ GameStateManager::GameStateManager() {
   }
   
   //states[GameState::STARTUP]  = new MenuState();
-  states[GameState::MENU]     = new MenuState();
+  states[GameState::MENU]     = new MenuState(r);
   //states[GameState::PLAYING]  = new MenuState();
   //states[GameState::SHUTDOWN] = new MenuState();
   
