@@ -13,17 +13,18 @@ void PlayingState::handleEvents() {
 }
 
 void PlayingState::update(float deltaTime) {
-
+  player->update(deltaTime);
 }
 
 void PlayingState::render(SDL_Renderer* r) {
-
+  player->render(r);
 }
 
-PlayingState::PlayingState() {
-
+PlayingState::PlayingState(SDL_Renderer* r) {
+  player = new Player(r, new Vec2{100,100}, 100, 100 );
 }
 
 PlayingState::~PlayingState() {
-
+  delete player;
+  player = nullptr;
 }

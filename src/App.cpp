@@ -78,8 +78,6 @@ bool App::startup()
 void App::Load()
 {
   stateManager = new GameStateManager(renderer);
-  
-  player = new Player(renderer, new Vec2{100,100}, 100, 100 );
 }
 
 
@@ -140,8 +138,6 @@ void App::Update()
 
   //std::cout << deltaTime << std::endl;
 
-  // player->update(deltaTime);
-
   stateManager->update(deltaTime);
   
   
@@ -154,8 +150,6 @@ void App::Render()
   SDL_RenderClear(renderer);			//BEGINS RENDERING
 
   //ENTITY RENDERING
-
-  //player->render(renderer);
 
   //UPDATE STATEMANAGER
 
@@ -195,9 +189,6 @@ void App::cleanup()
 
   delete stateManager;
   stateManager = nullptr;
-  
-  delete player;
-  player = nullptr;
   
   delete text;
   

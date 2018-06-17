@@ -43,7 +43,7 @@ GameStateManager::GameStateManager(SDL_Renderer* r) {
   
   //states[GameState::STARTUP]  = new MenuState();
   states[GameState::MENU]     = new MenuState(r);
-  states[GameState::PLAYING]  = new PlayingState();
+  states[GameState::PLAYING]  = new PlayingState(r);
   //states[GameState::SHUTDOWN] = new MenuState();
 
 

@@ -40,16 +40,9 @@ class App {
   
   const int FRAMERATE = 60;
   
-
-
   GameStateManager* stateManager = nullptr;
+
   
-  Player* player = nullptr;
-
-
-
-
-
   
   App();
   
