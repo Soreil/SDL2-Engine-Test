@@ -1,18 +1,18 @@
 
 
-
-- Test if DT will provide smooth movement (SOLVED)
-
 - Figure out movement issue [-]
   -- It's an issue with DT calculation, OF COURSE
 
+- Implement other states [x] (Solved for now, I Implemented a playing state which will be enough.)
 
-- Implement other states [-] (Implemented a playing state)
-
+  >>>YOU ARE HERE
 
 - Implement a timer class (which will help fix DT issues)
 
+
 - Test collisions implementation
+  -- To do this, I will need a test entity, maybe start on walls?
+  
 
 - In game states? (Sub-states inside PlayingState)
 
