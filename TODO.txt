@@ -10,7 +10,6 @@
 - Implement other states [-] (Implemented a playing state)
 
 
-
 - Implement a timer class (which will help fix DT issues)
 
 - Test collisions implementation

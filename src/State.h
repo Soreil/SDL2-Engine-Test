@@ -1,11 +1,21 @@
 #pragma once
 #include <SDL.h>
 
+class GameStateManager;
 
 class State {
-public:
+ public:
+  GameStateManager* stateManager = nullptr;
 
-  virtual void onEnterState() = 0;
+  void setStateManager(GameStateManager* stateManager) {
+    this->stateManager = stateManager;
+  }
+
+  void releaseStateManager() {
+    stateManager = nullptr;
+  }
+
+  virtual void onEnterState(GameStateManager* stateManager) = 0;
   virtual void onExitState() = 0;
   
   virtual void handleEvents() = 0;

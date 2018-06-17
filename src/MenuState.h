@@ -5,14 +5,17 @@
 
 #include "Sprite.h"
 
+
+class GameStateManager;
+
 class MenuState : public State {
  private:
   Sprite* backgroundLogo = nullptr;
-  const std::string bgLogoName = "recources/menuTexture.bmp";
-
+  const std::string bgLogoName = "resources/menuTexture.bmp";
+  
  public:
 
-  void onEnterState();
+  void onEnterState(GameStateManager* sm);
   void onExitState();
 
   void handleEvents();

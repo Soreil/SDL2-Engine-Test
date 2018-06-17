@@ -77,6 +77,8 @@ bool App::startup()
 */
 void App::Load()
 {
+  stateManager = new GameStateManager(renderer);
+  
   player = new Player(renderer, new Vec2{100,100}, 100, 100 );
 }
 
@@ -132,14 +134,16 @@ void App::Update()
  
   deltaTime =  currTicks - prevTicks;
 
-  std::cout << deltaTime << std::endl;
+  //std::cout << deltaTime << std::endl;
  
   deltaTime /= 1000.f;
 
-  std::cout << deltaTime << std::endl;
+  //std::cout << deltaTime << std::endl;
 
-  player->update(deltaTime);
+  // player->update(deltaTime);
 
+  stateManager->update(deltaTime);
+  
   
 }
 
@@ -151,8 +155,12 @@ void App::Render()
 
   //ENTITY RENDERING
 
-  player->render(renderer);
+  //player->render(renderer);
 
+  //UPDATE STATEMANAGER
+
+  stateManager->render(renderer);
+  
   // UI RENDERING
   text->renderText(Text::text::testSailor, Vec2{0,0});
   
@@ -185,6 +193,9 @@ void App::run()
 void App::cleanup()
 {
 
+  delete stateManager;
+  stateManager = nullptr;
+  
   delete player;
   player = nullptr;
   

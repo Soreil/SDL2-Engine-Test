@@ -6,8 +6,7 @@
 
 class PlayingState : public State {
  public:
-
-  void onEnterState();
+  void onEnterState(GameStateManager* sm);
   void onExitState();
 
   void handleEvents();

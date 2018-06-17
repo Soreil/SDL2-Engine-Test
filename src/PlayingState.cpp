@@ -1,11 +1,11 @@
 #include "PlayingState.h"
 
 
-void PlayingState::onEnterState() {
-
+void PlayingState::onEnterState(GameStateManager* sm) {
+  setStateManager(sm);
 }
 void PlayingState::onExitState() {
-
+  releaseStateManager();
 }
 
 void PlayingState::handleEvents() {

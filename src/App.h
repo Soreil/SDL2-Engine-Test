@@ -6,7 +6,7 @@
 #include "Text.h"
 #include "Input.h"
 #include "Player.h"
-
+#include "StateManager.h"
 
 class Entity;
 
@@ -42,7 +42,8 @@ class App {
   
 
 
-
+  GameStateManager* stateManager = nullptr;
+  
   Player* player = nullptr;
 
 
