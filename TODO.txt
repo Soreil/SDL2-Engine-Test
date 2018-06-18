@@ -5,10 +5,9 @@
 
 - Implement other states [x] (Solved for now, I Implemented a playing state which will be enough.)
 
+- Implement a timer class ( Timer is implemented, seems to be working)
+
   >>>YOU ARE HERE
-
-- Implement a timer class (which will help fix DT issues)
-
 
 - Test collisions implementation
   -- To do this, I will need a test entity, maybe start on walls?
