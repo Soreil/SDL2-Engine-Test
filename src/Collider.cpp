@@ -1,5 +1,5 @@
 #include "Collider.h"
-
+#include "Entity.h"
 
 
 void Collider::update(Entity* entity) {

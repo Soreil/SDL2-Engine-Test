@@ -10,6 +10,8 @@
 
 #include <stdint.h>
 
+#include "Collider.h"
+
 
 class Entity
 {
@@ -21,9 +23,10 @@ class Entity
   Vec2 velocity;
   
   SDL_Rect* b_box = nullptr;
-
   Sprite* sprite = nullptr;
+  Collider* collider = nullptr;
 
+  
   virtual void load() = 0;
 
   virtual void handleInputs() = 0;

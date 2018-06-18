@@ -1,9 +1,10 @@
 #pragma once
 #include <SDL.h>
-#include "Entity.h"
 #include <cstdint>
 
 #include "Vector2.h"
+
+class Entity;
 
 class Collider {
  public:

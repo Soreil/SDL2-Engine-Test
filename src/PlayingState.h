@@ -8,11 +8,15 @@
 
 #include "Player.h"
 
+#include "EntityManager.h"
+
 class PlayingState : public State {
  private:
   //temporary for testing, eventually move this to an entityManager
   Player* player = nullptr;
 
+  EntityManager entityManager;
+  
   Timer timer;
   
  public:
