@@ -2,7 +2,7 @@ OBJS = main.cpp $(wildcard src/*.cpp)
 
 OBJ_NAME = build/main
 
-INCLUDE_PATHS = -IC:\dev_libs\include\SDL2 -IC:\users\sweetsbeats\SDL2-Engine-Test\src
+INCLUDE_PATHS = -IC:\dev_libs\include\SDL2 -Isrc
 
 LIBRARY_PATHS = -LC:\dev_libs\lib
 
