@@ -16,6 +16,9 @@
 
 Best way to go about this is to have entityManager, with three stacks;
 
+(UPDATED OPINION): Having seperate stacks is kind of a bitch. Could just reserve X number of spots at the front
+	 	   of the stack to certain Entities as a way to know where special entities are.  
+
 one stack for important entities,
 one for less important entities (NPCs),
 one for static objects (Walls, ect.)

@@ -7,8 +7,19 @@ void EntityManager::addEntity(Entity* entity) {
   for (int i = 0; i < MAX_ENTITIES; i++) {
     if (!entities[i]) {
       entities[i] = entity;
+      break;
     }
   }
+
+  for (int i = 0; i < MAX_ENTITIES; i++) {
+    if (entities[i]) {
+      printf("%d has an entity\n", i);
+    }
+    else {
+      printf("%d is a nullptr\n", i);
+    }
+  }
+  
 }
 
 void EntityManager::update(float dt) {
@@ -22,7 +33,8 @@ void EntityManager::update(float dt) {
 */
   
   for (int i = 0; i < MAX_ENTITIES; i++) {
-    entities[i]->update(dt);
+    if (entities[i])
+      entities[i]->update(dt);
   }
   
 
