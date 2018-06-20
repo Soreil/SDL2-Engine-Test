@@ -41,7 +41,10 @@ void EntityManager::update(float dt) {
 }
 
 void EntityManager::render(SDL_Renderer* r) {
-
+  for (int i = 0; i < MAX_ENTITIES; i++) {
+    if (entities[i])
+      entities[i]->render(r);
+  }
 }
 
 

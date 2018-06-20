@@ -5,6 +5,8 @@
 
 #include "TestEnt.h"
 
+#include "StateManager.h"
+
 void PlayingState::onEnterState(GameStateManager* sm) {
   setStateManager(sm);
   timer.start();
@@ -19,9 +21,17 @@ void PlayingState::onExitState() {
 
 void PlayingState::handleEvents() {
 
+  const Uint8* keystate = SDL_GetKeyboardState(NULL);
+
+  if ( keystate[SDL_SCANCODE_ESCAPE] ) {
+    stateManager->switchState(GameState::MENU);
+  }
+  
 }
 
 void PlayingState::update(float deltaTime) {
+  handleEvents();
+
   // player->update(deltaTime);
   // std::cout << timer.getTicks()/1000.f << std::endl;
   entityManager.update(deltaTime);
