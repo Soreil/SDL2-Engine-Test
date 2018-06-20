@@ -10,20 +10,27 @@ void TestEnt::handleInputs() {
 }
 
 void TestEnt::update(float dt) {
-
+  collider->x = b_box->x;
+  collider->y = b_box->y;
 }
 
 void TestEnt::render(SDL_Renderer* r) {
-  collider = new Collider(0, 0, 32, 32);    //Have a default just in case
+  if (sprite)
+    sprite->render(r);
 }
 
 
-TestEnt::TestEnt(int32_t x, int32_t y, int32_t w, int32_t h) {
+TestEnt::TestEnt(SDL_Renderer* r, int32_t x, int32_t y, int32_t w, int32_t h) {
   collider = new Collider(x, y, w, h);
+  b_box = new SDL_Rect{x, y, w, h};
+  sprite = new Sprite( r, textureName, nullptr, new SDL_Rect{x, y, w, h} );
 }
 
 TestEnt::~TestEnt() {
   delete collider;
   collider = nullptr;
+
+  delete b_box;
+  b_box = nullptr;
 }
 

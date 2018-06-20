@@ -18,7 +18,7 @@ class TestEnt : public Entity {
   void render(SDL_Renderer* r);
 
   TestEnt();
-  TestEnt(int32_t x, int32_t y, int32_t w, int32_t h);
+  TestEnt(SDL_Renderer* r, int32_t x, int32_t y, int32_t w, int32_t h);
 
   ~TestEnt();
   
