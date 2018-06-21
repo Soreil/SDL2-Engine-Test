@@ -9,13 +9,20 @@
 
 - Test collisions implementation
 
->>>YOU ARE HERE
+
 
 - Test Collision resolution
-  --Error: currently getCollisionArea only returns {x: 200 , y: -72}
+  --Error:  getCollisionArea return junk numbers from improper calculations
   
 
 
+>>>YOU ARE HERE
+
+
+Collision resolution plan:
+- Get quadrant the collision occured in, use it to find the direction to push the entity back
+- use (Max - Curr) to find the scalar values of the impact
+- Apply collision resolution (Possibly in a "resolve collision with entity" function)
 
 
 

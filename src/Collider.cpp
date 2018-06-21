@@ -25,6 +25,9 @@ bool Collider::isColliding(Collider* collidable) {
   
 }
 
+
+
+
 Vec2 Collider::getCollisionArea(Collider* collidable) {
   
   int32_t maxLength;
@@ -33,30 +36,41 @@ Vec2 Collider::getCollisionArea(Collider* collidable) {
   int32_t maxHeight;
   int32_t currHeight;
 
+
+  SDL_Rect* a = nullptr;
+  SDL_Rect* b = nullptr;
+
+  a = b_box;
+  b = collidable->b_box;
+  
   //TODO(sweets): Look into using absoloute values + taking negative
   
   // X STUFF
-  if ( collidable->x >= 0 ) {
-    maxLength = this->w + collidable->w;
-    currLength = ( collidable->x + collidable->w ) - ( this->x ) ;
+  if ( b->x >= 0 ) {
+    maxLength = a->w + b->w;
+    currLength = ( b->x + b->w ) - ( a->x ) ;
   } else {
-    maxLength = this->w + (-collidable->w);
-    currLength = ( collidable->x + (-collidable->w)  ) - ( this->x ) ;
+    maxLength = a->w + (-b->w);
+    currLength = ( b->x + (-b->w)  ) - ( a->x ) ;
   }
 
   // Y STUFF
-  if ( collidable->y >= 0 ) {  
-    maxHeight = this->y + collidable->y;
-    currHeight = ( collidable->y + collidable ->w ) - (this->y) ;
+  if ( b->y >= 0 ) {  
+    maxHeight = a->y + b->y;
+    currHeight = ( b->y + b->w ) - (a->y) ;
   } else {
-    maxHeight = this->y + (-collidable->y);
-    currHeight = ( collidable->y + (-collidable ->w) ) - (this->y) ;
+    maxHeight = a->y + (-b->y);
+    currHeight = ( b->y + (-b->w) ) - (a->y) ;
   }
 
   int32_t collArea_X = currLength - maxLength;       //Returns - if colliding from the left
   int32_t collArea_Y = currHeight - maxHeight;       //Returns - if colliding from the top
 
   printf("Collision: X: %d  Y: %d  \n", collArea_X, collArea_Y);
+
+  a = nullptr;
+  b = nullptr;
+
   return Vec2( collArea_X, collArea_Y );    
 }
 
