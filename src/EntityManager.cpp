@@ -34,12 +34,18 @@ void EntityManager::update(float dt) {
 
   for ( int i = 0; i < MAX_ENTITIES; i++ ) {
     if (i == ImportantEntity::PLAYER) continue;
-    
     if (entities[i]) {
+      
       if ( entities[i]->collider ) {
-	//if ( entities[ImportantEntity::PLAYER]->collider->isColliding( entities[i]->collider ) ) {
-       printf("entities colliding!!!\n");
-       //}
+	if ( entities[i]->collider )
+	if (entities[ImportantEntity::PLAYER]->collider ) {
+	  if ( entities[ImportantEntity::PLAYER]->collider->isColliding( entities[i]->collider ) ) {
+	    printf("entities colliding!!!\n");
+	  }
+	}
+	else {
+	   printf("Player doesn't have a collider! \n");
+	}	
       }
     }
   }

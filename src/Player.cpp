@@ -38,31 +38,6 @@ void Player::handleInputs() {
 void Player::update(float dt) {
   //handleInputs();  
 
-  /*
-  if ( moving ) {
-    switch (currDirection) {
-      
-    case Direction::DOWN:
-      position.y += (speed * dt);
-      
-      break;
-
-    case Direction::UP:
-      position.y -= (speed * dt);
-      break;
-
-    case Direction::LEFT:
-      position.x -= (speed * dt);
-      break;
-
-    case Direction::RIGHT:
-      position.x += (speed);
-      
-      break; 
-    }
-    }*/
-
-
 
   const Uint8* keystate = SDL_GetKeyboardState(NULL);
   
@@ -79,14 +54,22 @@ void Player::update(float dt) {
   if ( keystate[SDL_SCANCODE_RIGHT] ) {
     position.x += speed;
   }
- 
+
+
+
+  sprite->renderQuad->x = position.x;
+  sprite->renderQuad->y = position.y;
+
+  collider->b_box->x = position.x;
+  collider->b_box->y = position.y;
+
+  
 }
 
 
 
 void Player::render(SDL_Renderer* r) {
-  sprite->renderQuad->x = position.x;
-  sprite->renderQuad->y = position.y;
+  
   sprite->render(r);
 }
 
@@ -94,6 +77,8 @@ void Player::render(SDL_Renderer* r) {
 Player::Player( SDL_Renderer* r, Vec2* position, int w, int h) {
   sprite = new Sprite(r, textureName, NULL, new SDL_Rect{position->x, position->y, w, h} );
 
+  collider = new Collider(position->x, position->y, w, h);
+  
   load();
     
   

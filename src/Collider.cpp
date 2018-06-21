@@ -8,16 +8,21 @@ void Collider::update(Entity* entity) {
 
 
 bool Collider::isColliding(Collider* collidable) {
-  if ( (b_box.x + b_box.w) >= collidable->b_box.x ) {
-    return true;
-  } else if ( b_box.x <= (collidable->b_box.x + collidable->b_box.w ) ) {
-    return true;
-  } else if ( (b_box.y + b_box.h) >= collidable->b_box.y ) {
-    return true;
-  } else if ( b_box.y <= (collidable->b_box.y + collidable->b_box.h) ) {
-    return true;
+  if (collidable && b_box) {;
+
+    if ( b_box->x >= collidable->b_box->x && b_box->x <= (collidable->b_box->x + collidable->b_box->w ) ) {
+      return true;
+    }
+    else if ( b_box->y >= collidable->b_box->y &&
+	      b_box->y <= (collidable->b_box->y + collidable->b_box->h ) ) {
+      return true;
+    }
+    return false;
   }
- 
+  else {
+    printf("Error in Collidable.h: collidable and or b_box is null! \n");
+    return false;
+  }
 }
 
 Vec2 Collider::getCollisionArea(Collider* collidable) {
@@ -62,11 +67,13 @@ Collider::Collider( int32_t _x, int32_t _y, int32_t _w, int32_t _h ) {
   w = _w;
   h = _h;
   
-  b_box.x = _x;
-  b_box.y = _y;
+  b_box = new SDL_Rect{_x, _y, _w, _h};
+  printf(" x: %d   y: %d    w: %d    h: %d \n", b_box->x, b_box->y, b_box->w, b_box->h);
+  
 }
 
 Collider::~Collider() {
-  
+  delete b_box;
+  b_box = nullptr;
 }
 

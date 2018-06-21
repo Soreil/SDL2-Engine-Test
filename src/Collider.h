@@ -8,7 +8,7 @@ class Entity;
 
 class Collider {
  public:
-  SDL_Rect b_box;
+  SDL_Rect* b_box = nullptr;
   int32_t x, y, w, h;
  
   void update(Entity* entity);
