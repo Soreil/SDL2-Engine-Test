@@ -12,8 +12,8 @@ bool Collider::isColliding(Collider* collidable) {
   SDL_Rect* cBox = collidable->b_box;
   
   if (collidable && b_box) {
-    if ( b_box->x >= cBox->x && b_box->x <= cBox->x + cBox->w &&
-	 b_box->y >= cBox->y && b_box->y <= cBox->y + cBox->h    ) {
+    if ( b_box->x < cBox->x + cBox->w && cBox->x < b_box->x + b_box->w &&
+	 b_box->y < cBox->y + cBox->h && cBox->y < b_box->y + b_box->h    ) {
       return true;
     }
     else {
