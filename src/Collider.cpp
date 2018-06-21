@@ -8,21 +8,21 @@ void Collider::update(Entity* entity) {
 
 
 bool Collider::isColliding(Collider* collidable) {
-  if (collidable && b_box) {;
 
-    if ( b_box->x >= collidable->b_box->x && b_box->x <= (collidable->b_box->x + collidable->b_box->w ) ) {
+  SDL_Rect* cBox = collidable->b_box;
+  
+  if (collidable && b_box) {
+    if ( b_box->x >= cBox->x && b_box->x <= cBox->x + cBox->w &&
+	 b_box->y >= cBox->y && b_box->y <= cBox->y + cBox->h    ) {
       return true;
     }
-    else if ( b_box->y >= collidable->b_box->y &&
-	      b_box->y <= (collidable->b_box->y + collidable->b_box->h ) ) {
-      return true;
+    else {
+      return false;
     }
-    return false;
   }
-  else {
-    printf("Error in Collidable.h: collidable and or b_box is null! \n");
-    return false;
-  }
+  
+  cBox = nullptr;
+  
 }
 
 Vec2 Collider::getCollisionArea(Collider* collidable) {
