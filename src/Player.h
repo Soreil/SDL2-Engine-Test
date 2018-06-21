@@ -22,7 +22,7 @@ class Player : public Entity {
   Direction currDirection = Direction::UP;
   bool moving = false;
   
-  float speed = 1.0f;
+  float speed = 5.0f;
   
  public:
 

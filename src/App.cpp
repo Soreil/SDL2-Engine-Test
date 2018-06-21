@@ -66,7 +66,7 @@ bool App::startup()
 
   //INIT ENGINE SYSTEMS
   
-  text = new TextHandler(gFont, renderer);  
+  //text = new TextHandler(gFont, renderer);  
   //If everything is successfully intialized, true is returned here
   return true;
 }
@@ -140,7 +140,6 @@ void App::Update()
 
   stateManager->update(deltaTime);
   
-  
 }
 
 
@@ -156,7 +155,7 @@ void App::Render()
   stateManager->render(renderer);
   
   // UI RENDERING
-  text->renderText(Text::text::testSailor, Vec2{0,0});
+  //text->renderText(Text::text::testSailor, Vec2{0,0});
   
   
   SDL_RenderPresent(renderer);		//ENDS RENDERING
@@ -179,6 +178,7 @@ void App::run()
       {
 	Update();
 	Render();
+	SDL_Delay(1.0f/FRAMERATE*1000.f);
       } 
   }
   
@@ -189,9 +189,13 @@ void App::cleanup()
 
   delete stateManager;
   stateManager = nullptr;
-  
+
+  /*
   delete text;
-  
+  text = nullptr;
+  */
+
+
   SDL_FreeSurface(screenSurface);
   screenSurface = nullptr;
   
