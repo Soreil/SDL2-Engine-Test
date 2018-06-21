@@ -56,7 +56,7 @@ Vec2 Collider::getCollisionArea(Collider* collidable) {
   int32_t collArea_X = currLength - maxLength;       //Returns - if colliding from the left
   int32_t collArea_Y = currHeight - maxHeight;       //Returns - if colliding from the top
 
-
+  printf("Collision: X: %d  Y: %d  \n", collArea_X, collArea_Y);
   return Vec2( collArea_X, collArea_Y );    
 }
 

@@ -7,11 +7,17 @@
 
 - Implement a timer class ( Timer is implemented, seems to be working)
 
-  >>>YOU ARE HERE
-
 - Test collisions implementation
-  -- To do this, I will need a test entity, maybe start on walls?
+
+>>>YOU ARE HERE
+
+- Test Collision resolution
+  --Error: currently getCollisionArea only returns {x: 200 , y: -72}
   
+
+
+
+
 
 
 Best way to go about this is to have entityManager, with three stacks;

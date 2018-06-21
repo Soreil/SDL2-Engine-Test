@@ -40,7 +40,9 @@ void EntityManager::update(float dt) {
 	if ( entities[i]->collider )
 	if (entities[ImportantEntity::PLAYER]->collider ) {
 	  if ( entities[ImportantEntity::PLAYER]->collider->isColliding( entities[i]->collider ) ) {
-	    printf("entities colliding!!!\n");
+	    
+	    entities[ImportantEntity::PLAYER]->collider->getCollisionArea( entities[i]->collider);
+
 	  }
 	}
 	else {
