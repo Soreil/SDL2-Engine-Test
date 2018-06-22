@@ -22,6 +22,32 @@ void EntityManager::addEntity(Entity* entity) {
   
 }
 
+
+
+void EntityManager::resolveCollisions() {
+
+  /*
+    
+    if a collision is detected using AABB
+    
+    auto displacement = getCollisionArea( entity );
+
+    CollisionDirection dir = getCollisionDirection( player.collider.x, player.collider.y, 
+                                                   ent.collider.x, ent.collider.y, 
+						   displacement.x, displacement.y  );
+    
+
+    resolveCollision( player, ent, dir, displacement )
+    
+    
+   */
+  
+  
+}
+
+
+
+
 void EntityManager::update(float dt) {
 
   /*

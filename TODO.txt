@@ -18,12 +18,9 @@
 
 >>>YOU ARE HERE
 
-
-Collision resolution plan:
-- Get quadrant the collision occured in, use it to find the direction to push the entity back
-- use (Max - Curr) to find the scalar values of the impact
-- Apply collision resolution (Possibly in a "resolve collision with entity" function)
-
+- Finish Collisions
+  -- EntityManager::resolveCollisions has a psuedo function in it which will be implemented for real
+  -- After narrow Phase is proven to work, we can move onto broad phase checks
 
 
 

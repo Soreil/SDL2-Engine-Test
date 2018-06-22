@@ -12,6 +12,7 @@
 
 #include "Collider.h"
 
+class Collider;
 
 class Entity
 {

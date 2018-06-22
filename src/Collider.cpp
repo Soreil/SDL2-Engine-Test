@@ -26,6 +26,40 @@ bool Collider::isColliding(Collider* collidable) {
 }
 
 
+Quadrant Collider::getQuadrant(int x, int y) {
+  if ( x > 0 && y < 0 ) {
+    return Quadrant::ONE;
+  }
+  else if ( x < 0 && y < 0 ) {
+    return Quadrant::TWO;
+  }
+  else if ( x < 0 && y > 0 ) {
+    return Quadrant::THREE;
+  }
+  else if ( x > 0 && y > 0 ) {
+    return Quadrant::FOUR;
+  }
+}
+
+
+CollisionDirection Collider::getCollisionDirection( int ax, int ay, int bx, int by, int colResX, int colResY ) {
+  if ( colResX > colResY ) {
+    if ( ax < bx ) {
+      return CollisionDirection::DIR_LEFT;
+    }
+    else if ( ax > bx ) {
+      return CollisionDirection::DIR_RIGHT;
+    }
+  }
+  else if ( colResX <= colResY ) {
+    if ( ay < by ) {
+      return CollisionDirection::DIR_TOP;
+    }
+    else if ( ay > by ) {
+      return CollisionDirection::DIR_BOTTOM;
+    }
+  }
+}
 
 
 Vec2 Collider::getCollisionArea(Collider* collidable) {
@@ -42,6 +76,14 @@ Vec2 Collider::getCollisionArea(Collider* collidable) {
 
   a = b_box;
   b = collidable->b_box;
+
+
+  //Store Quadrants for later
+  this->quad       = getQuadrant( a->x, a->y );
+  collidable->quad = getQuadrant( b->x, b->y );
+
+  maxLength = a->w + b->w;
+  maxHeight = a->h + b->h;  
   
   //TODO(sweets): Look into using absoloute values + taking negative
   

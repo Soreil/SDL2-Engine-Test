@@ -17,6 +17,8 @@ class EntityManager {
  public:
 
   void addEntity(Entity* entity);
+
+  void resolveCollisions();
   
   void update(float deltaTime);
 
