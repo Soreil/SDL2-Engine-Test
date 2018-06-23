@@ -2,6 +2,7 @@
 
 #include "Collider.h"
 
+#include "Physics.h"
 
 void EntityManager::addEntity(Entity* entity) {
   for (int i = 0; i < MAX_ENTITIES; i++) {
@@ -41,6 +42,50 @@ void EntityManager::resolveCollisions() {
     
     
    */
+
+
+
+  
+  for ( int i = 0; i < MAX_ENTITIES; i++ ) {
+    if (i == ImportantEntity::PLAYER) continue;
+    if (entities[i]) {
+      
+      if ( entities[i]->collider ) {
+	if ( entities[i]->collider )
+	  if (entities[ImportantEntity::PLAYER]->collider ) {
+	    if ( entities[ImportantEntity::PLAYER]->collider->isColliding( entities[i]->collider ) ) {
+	         
+	      Vec2 displacement =
+		entities[ImportantEntity::PLAYER]->collider->getCollisionArea( entities[i]->collider);
+
+	      printf( " Displacement { X:%d, Y:%d }\n", displacement.x, displacement.y );
+	      
+	      /*
+	      Physics::CollisionDirection dir = getCollisionDirection( entities[ImportantEntitiy::PLAYER]->x
+							      entities[ImportantEntitiy::PLAYER]->y
+							      entities[i]->, entities[i]->y
+							      displacement.x, displacement.y       );
+	      
+	      
+	      Physics::resolveCollision( entities[ImportantEntity::PLAYER], dir, displacement );
+	      */
+
+	      
+	    }
+	  }
+	  else {
+	    printf("Player doesn't have a collider! \n");
+	  }	
+      }
+    }
+  }
+  
+
+
+
+
+
+
   
   
 }
@@ -58,26 +103,8 @@ void EntityManager::update(float dt) {
   }
 */
 
-  for ( int i = 0; i < MAX_ENTITIES; i++ ) {
-    if (i == ImportantEntity::PLAYER) continue;
-    if (entities[i]) {
-      
-      if ( entities[i]->collider ) {
-	if ( entities[i]->collider )
-	if (entities[ImportantEntity::PLAYER]->collider ) {
-	  if ( entities[ImportantEntity::PLAYER]->collider->isColliding( entities[i]->collider ) ) {
-	    
-	    entities[ImportantEntity::PLAYER]->collider->getCollisionArea( entities[i]->collider);
-
-	  }
-	}
-	else {
-	   printf("Player doesn't have a collider! \n");
-	}	
-      }
-    }
-  }
-  
+ 
+  resolveCollisions();
   
   
   

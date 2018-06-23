@@ -23,6 +23,9 @@
   -- After narrow Phase is proven to work, we can move onto broad phase checks
 
 
+- Move relevant Physics code to Physics.h/.cpp namespace, clean up affected collision code
+
+
 
 Best way to go about this is to have entityManager, with three stacks;
 
