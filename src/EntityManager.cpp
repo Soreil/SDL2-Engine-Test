@@ -31,7 +31,7 @@ void EntityManager::resolveCollisions() {
     
     if a collision is detected using AABB
     
-    auto displacement = getCollisionArea( entity );
+     [x] auto displacement = getCollisionArea( entity );
 
     CollisionDirection dir = getCollisionDirection( player.collider.x, player.collider.y, 
                                                    ent.collider.x, ent.collider.y, 
@@ -59,6 +59,14 @@ void EntityManager::resolveCollisions() {
 		entities[ImportantEntity::PLAYER]->collider->getCollisionArea( entities[i]->collider);
 
 	      printf( " Displacement { X:%d, Y:%d }\n", displacement.x, displacement.y );
+
+	      CollisionDirection dir = Phyiscs::getCollisionDirection( entities[ImportantEntity::PLAYER]->x
+								       entities[ImportantEntity::PLAYER]->y
+								       entities[i]->x, entities[i]->y
+								       displacement.x, displacement.y );
+
+
+	      Physics::resolveCollision( entities[ImportantEntity::PLAYER, dir, displacement );
 	      
 	      /*
 	      Physics::CollisionDirection dir = getCollisionDirection( entities[ImportantEntitiy::PLAYER]->x

@@ -43,6 +43,35 @@ Quadrant Collider::getQuadrant(int x, int y) {
 */
 
 
+
+Vec2 Collider::getCollisionAreaNEW(Collider* collidable) {
+
+  int32_t maxLength, currLength;
+
+  a = b_box;
+  b = collidable->b_box;
+
+  int32_t ax, ay, aw, bx, by, bw;
+  int32_t sx;
+
+
+  //get smallest X
+  ax < bx ? sx = ax : sx = bx;
+
+  //Max length to count a collision
+  maxLength = aw + bw;
+  currLength = (bx - ax) + (bx + w) - sx;
+
+  
+
+
+  a = nullptr;
+  b = nullptr;
+  
+  
+}
+
+
 Vec2 Collider::getCollisionArea(Collider* collidable) {
   
   int32_t maxLength;

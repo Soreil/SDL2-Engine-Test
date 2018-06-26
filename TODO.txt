@@ -18,9 +18,9 @@
 
 >>>YOU ARE HERE
 
-- Finish Collisions
-  -- EntityManager::resolveCollisions has a psuedo function in it which will be implemented for real
-  -- After narrow Phase is proven to work, we can move onto broad phase checks
+- Implement SAT-based Collisions
+  -- SAT collisions are working on the x-axis. 
+
 
 
 - Move relevant Physics code to Physics.h/.cpp namespace, clean up affected collision code
@@ -46,3 +46,4 @@ entityManager will do broad phase / narrow phase checks (player against all coll
 - In game states? (Sub-states inside PlayingState)
 
 - Maybe do some drawing up of the shops
+
