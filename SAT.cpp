@@ -26,8 +26,12 @@ public:
 public:  
   void init() {
     half_w.x = w/2;
+    half_h.y = h/2;
+
+    center = new Vec2{ x + w/2, y + h/2 };
+    
   }
-  
+
   ~SAT_Rect() {
     delete center;
     center = nullptr;
@@ -43,16 +47,16 @@ int main () {
 
   a.x = 100;
   a.w = 64;
-  a.y = 0;
-  a.h = 0;
-  a.center = new Vec2{ a.x + (a.w/2), 0 };
+  a.y = 19;
+  a.h = 20;
+  //a.center = new Vec2{ a.x + (a.w/2), a.y + (a.h/2) };
   a.init();
 
   b.x = 101;
   b.w = 64;
-  b.y = 0;
-  b.h = 0;
-  b.center = new Vec2{ b.x + (b.w/2), 0 };
+  b.y = 20;
+  b.h = 20;
+  // b.center = new Vec2{ b.x + (b.w/2), 0 };
   b.init();
   
   auto projectionVec = getCollisionVector( &a, &b ); 
@@ -72,10 +76,16 @@ Vec2* getCollisionVector(SAT_Rect* a, SAT_Rect* b) {
   //a->center = new Vec2{ a->x + a->w/2, a->y + a->h/2 };
   
   int32_t distBetween;
-  Vec2* projection = nullptr;
+  Vec2* projection = new Vec2();
   
   //check if domains overlap
-  if ( (a->x + a->w) > b->x && a->x < (b->x + b->w) ) {
+  if ( (a->x + a->w) > b->x && a->x < (b->x + b->w) &&
+       a->y < (b->y + b->w) && (a->y + a->w) > b->y ) {
+
+
+    /*
+      HANDLE X STUFF
+     */
     printf("Collision occured on X axis (desu)\n");
   
     if ( a->center->x >= b->center->x ) {
@@ -86,7 +96,7 @@ Vec2* getCollisionVector(SAT_Rect* a, SAT_Rect* b) {
       a->half_w.x = -(a->w/2);
       b->half_w.x = (b->w)/2;
       
-      projection = new Vec2{ abs(a->half_w.x) + b->half_w.x - distBetween, 0 };
+      projection->x = (a->w/2) + (b->w/2) - distBetween;
       
     }
     else {
@@ -95,13 +105,44 @@ Vec2* getCollisionVector(SAT_Rect* a, SAT_Rect* b) {
       a->half_w.x =   a->w/2;
       b->half_w.x = -(b->w/2);
       
-      projection = new Vec2{ a->half_w.x + abs(b->half_w.x) - distBetween, 0 };
+      projection->x = (a->w/2) + (b->w/2) - distBetween;
       /*if a is less than (to the left of) b's center, then the projection vector's direction 
 	is that of what will resolve the collision
       */
       projection->x *= -1;  
     }
-    printf("Projection vector X:%d \n", projection->x);
+
+
+    /*
+      HANDLE Y
+     */
+
+
+    if ( a->center->y >= b->center->y ) {
+      distBetween = a->center->y - b->center->y;
+
+      a->half_h.y = -(a->h/2);
+      b->half_h.y =   a->h/2;
+
+      projection->y = (a->h/2) + (b->h/2) - distBetween;
+      
+    }
+    else {
+      distBetween = b->center->y - a->center->y;
+      
+      a->half_h.y =   a->h/2;
+      b->half_h.y = -(a->h/2);
+
+      projection->y = (a->h/2) + (b->h/2) - distBetween;
+
+      projection->y *= -1;
+    }
+    
+
+
+
+    
+    printf("Projection vector: X:%d  Y:%d \n", projection->x, projection->y);
     return projection;
   }
   else {    
