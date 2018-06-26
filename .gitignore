@@ -12,6 +12,8 @@
 
 *.txt~
 
+*.exe
+
 #don't know if this works, hopefully ignores files like "MenuState~"
 *~
 
