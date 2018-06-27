@@ -42,7 +42,7 @@ Quadrant Collider::getQuadrant(int x, int y) {
 }
 */
 
-
+/*
 
 Vec2 Collider::getCollisionAreaNEW(Collider* collidable) {
 
@@ -71,7 +71,7 @@ Vec2 Collider::getCollisionAreaNEW(Collider* collidable) {
   
 }
 
-
+*/
 Vec2 Collider::getCollisionArea(Collider* collidable) {
   
   int32_t maxLength;
@@ -136,6 +136,9 @@ Collider::Collider( int32_t _x, int32_t _y, int32_t _w, int32_t _h ) {
   h = _h;
   
   b_box = new SDL_Rect{_x, _y, _w, _h};
+
+  sat_box = new SAT_Rect{_x, _y, _w, _h};
+  
   printf(" x: %d   y: %d    w: %d    h: %d \n", b_box->x, b_box->y, b_box->w, b_box->h);
   
 }
@@ -143,5 +146,9 @@ Collider::Collider( int32_t _x, int32_t _y, int32_t _w, int32_t _h ) {
 Collider::~Collider() {
   delete b_box;
   b_box = nullptr;
+
+  delete sat_box;
+  sat_box = nullptr;
+  
 }
 

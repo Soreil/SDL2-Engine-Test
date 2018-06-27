@@ -4,6 +4,9 @@
 
 #include "Physics.h"
 
+#include "SAT.h"
+
+
 void EntityManager::addEntity(Entity* entity) {
   for (int i = 0; i < MAX_ENTITIES; i++) {
     if (!entities[i]) {
@@ -27,78 +30,29 @@ void EntityManager::addEntity(Entity* entity) {
 
 void EntityManager::resolveCollisions() {
 
-  /*
-    
-    if a collision is detected using AABB
-    
-     [x] auto displacement = getCollisionArea( entity );
-
-    CollisionDirection dir = getCollisionDirection( player.collider.x, player.collider.y, 
-                                                   ent.collider.x, ent.collider.y, 
-						   displacement.x, displacement.y  );
-    
-
-    resolveCollision( player, ent, dir, displacement )
-    
-    
-   */
-
-
-
+  Vec2 projectionVec;
   
-  for ( int i = 0; i < MAX_ENTITIES; i++ ) {
-    if (i == ImportantEntity::PLAYER) continue;
-    if (entities[i]) {
-      
-      if ( entities[i]->collider ) {
-	if ( entities[i]->collider )
-	  if (entities[ImportantEntity::PLAYER]->collider ) {
-	    if ( entities[ImportantEntity::PLAYER]->collider->isColliding( entities[i]->collider ) ) {
-	         
-	      Vec2 displacement =
-		entities[ImportantEntity::PLAYER]->collider->getCollisionArea( entities[i]->collider);
+  for ( int i = 1; i < MAX_ENTITIES; i++ ) {
 
-	      printf( " Displacement { X:%d, Y:%d }\n", displacement.x, displacement.y );
+    if ( entities[i] && entities[i]->collider ) {
+      if ( entities[ImportantEntity::PLAYER]->collider->isColliding( entities[i]->collider ) ) {
 
-	      CollisionDirection dir = Phyiscs::getCollisionDirection( entities[ImportantEntity::PLAYER]->x
-								       entities[ImportantEntity::PLAYER]->y
-								       entities[i]->x, entities[i]->y
-								       displacement.x, displacement.y );
+         projectionVec = projectionVec +
+	   SAT::getCollisionVector( entities[ImportantEntity::PLAYER]->collider->sat_box,
+				    entities[i]->collider->sat_box );
+	
+	 printf("Collsion! Proj.Vec {X:%d, Y:%d}\n", projectionVec.x, projectionVec.y);
 
+	 printf("SAT_RECT CENTER: X:%d  Y:%d\n", entities[i]->collider->sat_box->w/2,
+		                                 entities[i]->collider->sat_box->h/2 );
+	 
 
-	      Physics::resolveCollision( entities[ImportantEntity::PLAYER, dir, displacement );
-	      
-	      /*
-	      Physics::CollisionDirection dir = getCollisionDirection( entities[ImportantEntitiy::PLAYER]->x
-							      entities[ImportantEntitiy::PLAYER]->y
-							      entities[i]->, entities[i]->y
-							      displacement.x, displacement.y       );
-	      
-	      
-	      Physics::resolveCollision( entities[ImportantEntity::PLAYER], dir, displacement );
-	      */
-
-	      
-	    }
-	  }
-	  else {
-	    printf("Player doesn't have a collider! \n");
-	  }	
       }
     }
+    
   }
   
-
-
-
-
-
-
-  
-  
 }
-
-
 
 
 void EntityManager::update(float dt) {

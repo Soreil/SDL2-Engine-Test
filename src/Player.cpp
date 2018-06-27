@@ -38,7 +38,8 @@ void Player::handleInputs() {
 void Player::update(float dt) {
   //handleInputs();  
 
-
+  updateSpriteAndCollider();
+  
   const Uint8* keystate = SDL_GetKeyboardState(NULL);
   
   if ( keystate[SDL_SCANCODE_UP] ) {
@@ -54,15 +55,6 @@ void Player::update(float dt) {
   if ( keystate[SDL_SCANCODE_RIGHT] ) {
     position.x += speed;
   }
-
-
-
-  sprite->renderQuad->x = position.x;
-  sprite->renderQuad->y = position.y;
-
-  collider->b_box->x = position.x;
-  collider->b_box->y = position.y;
-
   
 }
 

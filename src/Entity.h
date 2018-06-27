@@ -26,6 +26,7 @@ class Entity
   Sprite* sprite = nullptr;
   Collider* collider = nullptr;
 
+  void updateSpriteAndCollider();
   
   virtual void load() = 0;
 
