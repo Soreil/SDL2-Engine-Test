@@ -29,7 +29,6 @@ void EntityManager::addEntity(Entity* entity) {
 
 
 void EntityManager::resolveCollisions() {
-
   Vec2 projectionVec;
   
   for ( int i = 1; i < MAX_ENTITIES; i++ ) {
@@ -50,28 +49,33 @@ void EntityManager::resolveCollisions() {
 
 
 void EntityManager::update(float dt) {
-
-  /*
   for (int i = 0; i < MAX_ENTITIES; i++) {
-    if ( i == ImportantEntity::PLAYER ) continue;
-    if ( entities[i] && entities[ImportantEntity::PLAYER]->collider->isColliding(entities[i]->collider ) )
-      printf("COLLISION OCCURED \n");
-  }
-*/
-
- 
-  for (int i = 0; i < MAX_ENTITIES; i++) {
-    if (entities[i])
+    if (entities[i]) {
       entities[i]->update(dt);
-  }
 
+      if (entities[i]->collider)
+	entities[i]->collider->update( entities[i] );
+      
+    }
+  }
   resolveCollisions();
 
+  for (int i = 0; i < MAX_ENTITIES; i++) {
+    if (entities[i]) {
+      if ( entities[i]->sprite )
+	entities[i]->sprite->update( entities[i] );
+    }
+  }
 }
+
+
 
 void EntityManager::render(SDL_Renderer* r) {
   for (int i = 0; i < MAX_ENTITIES; i++) {
     if (entities[i])
+      if (entities[i]->sprite)
+	entities[i]->sprite->update( entities[i] );
+      
       entities[i]->render(r);
   }
 }

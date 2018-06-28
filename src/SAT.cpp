@@ -32,8 +32,9 @@ Vec2 SAT::getCollisionVector(SAT_Rect* a, SAT_Rect* b) {
   Vec2 projection;
   
   //check if domains overlap
-  if ( (a->x + a->w) > b->x && a->x < (b->x + b->w) &&
-       a->y < (b->y + b->w) && (a->y + a->w) > b->y ) {
+
+  //if ( (a->x + a->w) > b->x && a->x < (b->x + b->w) &&
+  //     a->y < (b->y + b->w) && (a->y + a->w) > b->y ) {
     
     // UPDATE CENTERS
     a->center->x = a->x + (a->w/2);
@@ -99,14 +100,14 @@ Vec2 SAT::getCollisionVector(SAT_Rect* a, SAT_Rect* b) {
     
 
     // Axis with the smallest overlap means the collision occured on that axis, so resolution needs to resolve using that axis' projection. 
-    abs(projection.x) >= abs(projection.y) ?  projection.x = 0 : projection.y = 0;
+    abs(projection.x) > abs(projection.y) ?  projection.x = 0 : projection.y = 0;
    
     
     return projection;
-  }
-  else {    
-    printf("meme not working \n");
-    return projection;
-  } 
+    //}
+    //else {    
+    //printf("meme not working \n");
+    //return projection;
+    //} 
 }
 

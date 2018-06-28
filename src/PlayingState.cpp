@@ -49,7 +49,7 @@ void PlayingState::render(SDL_Renderer* r) {
 PlayingState::PlayingState(SDL_Renderer* r) {
   //player = new Player(r, new Vec2{100,100}, 100, 100 );
 
-  entityManager.addEntity( new Player(r, new Vec2{100,100}, 100, 100 ) );
+  entityManager.addEntity( new Player(r, new Vec2{100,100}, 128, 128 ) );
 
   entityManager.addEntity( new TestEnt(r, 400, 400, 128, 128) );
 

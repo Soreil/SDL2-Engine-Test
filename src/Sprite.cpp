@@ -1,6 +1,11 @@
 #include "Sprite.h"
 
+#include "Entity.h"
 
+void Sprite::update(Entity* entity) {
+  renderQuad->x = entity->position.x;
+  renderQuad->y = entity->position.y;
+}
 
 void Sprite::render(SDL_Renderer* r) {
   if (texture)

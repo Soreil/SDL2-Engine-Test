@@ -11,7 +11,6 @@ void TestEnt::handleInputs() {
 }
 
 void TestEnt::update(float dt) {
-  updateSpriteAndCollider();
 }
 
 void TestEnt::render(SDL_Renderer* r) {

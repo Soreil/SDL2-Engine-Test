@@ -2,8 +2,14 @@
 #include "Entity.h"
 
 
+
 void Collider::update(Entity* entity) {
-  
+  x =          entity->position.x;
+  y =          entity->position.y;
+  sat_box->x = entity->position.x;
+  sat_box->y = entity->position.y;
+  b_box->x =   entity->position.x;
+  b_box->y =   entity->position.y;
 }
 
 

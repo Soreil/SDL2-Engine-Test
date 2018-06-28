@@ -37,9 +37,7 @@ void Player::handleInputs() {
 
 void Player::update(float dt) {
   //handleInputs();  
-
-  updateSpriteAndCollider();
-  
+ 
   const Uint8* keystate = SDL_GetKeyboardState(NULL);
   
   if ( keystate[SDL_SCANCODE_UP] ) {
