@@ -34,14 +34,14 @@ Vec2 SAT::getCollisionVector(SAT_Rect* a, SAT_Rect* b) {
   //check if domains overlap
   if ( (a->x + a->w) > b->x && a->x < (b->x + b->w) &&
        a->y < (b->y + b->w) && (a->y + a->w) > b->y ) {
-
-    // UPDATE CENTERS
-    a->center->x = (a->x + a->w)/2;
-    a->center->y = (a->y + a->h)/2;
     
-    b->center->x = (b->x + b->w)/2;
-    b->center->y = (b->y + b->h)/2;
-
+    // UPDATE CENTERS
+    a->center->x = a->x + (a->w/2);
+    a->center->y = a->y + (a->h/2);
+  
+    b->center->x = b->x + (b->w/2);
+    b->center->y = b->y + (b->h/2);
+  
     /*
       HANDLE X STUFF
      */
@@ -71,11 +71,9 @@ Vec2 SAT::getCollisionVector(SAT_Rect* a, SAT_Rect* b) {
       projection.x *= -1;  
     }
 
-
     /*
       HANDLE Y
      */
-
 
     if ( a->center->y >= b->center->y ) {
       distBetween = a->center->y - b->center->y;
@@ -98,6 +96,12 @@ Vec2 SAT::getCollisionVector(SAT_Rect* a, SAT_Rect* b) {
     } 
     
     printf("Projection vector: X:%d  Y:%d \n", projection.x, projection.y);
+    
+
+    // Axis with the smallest overlap means the collision occured on that axis, so resolution needs to resolve using that axis' projection. 
+    abs(projection.x) >= abs(projection.y) ?  projection.x = 0 : projection.y = 0;
+   
+    
     return projection;
   }
   else {    
