@@ -35,6 +35,12 @@ Vec2 SAT::getCollisionVector(SAT_Rect* a, SAT_Rect* b) {
   if ( (a->x + a->w) > b->x && a->x < (b->x + b->w) &&
        a->y < (b->y + b->w) && (a->y + a->w) > b->y ) {
 
+    // UPDATE CENTERS
+    a->center->x = (a->x + a->w)/2;
+    a->center->y = (a->y + a->h)/2;
+    
+    b->center->x = (b->x + b->w)/2;
+    b->center->y = (b->y + b->h)/2;
 
     /*
       HANDLE X STUFF
@@ -54,7 +60,7 @@ Vec2 SAT::getCollisionVector(SAT_Rect* a, SAT_Rect* b) {
     }
     else {
       distBetween = b->center->x - a->center->x;
-      
+ 
       a->half_w.x =   a->w/2;
       b->half_w.x = -(b->w/2);
       

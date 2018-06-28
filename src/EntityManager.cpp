@@ -35,11 +35,10 @@ void EntityManager::resolveCollisions() {
   for ( int i = 1; i < MAX_ENTITIES; i++ ) {
 
     if ( entities[i] && entities[i]->collider ) {
-      if ( entities[ImportantEntity::PLAYER]->collider->isColliding( entities[i]->collider ) ) {
+      // if ( entities[ImportantEntity::PLAYER]->collider->isColliding( entities[i]->collider ) ) {
 
-         projectionVec = projectionVec +
-	   SAT::getCollisionVector( entities[ImportantEntity::PLAYER]->collider->sat_box,
-				    entities[i]->collider->sat_box );
+         projectionVec = SAT::getCollisionVector( entities[ImportantEntity::PLAYER]->collider->sat_box,
+						  entities[i]->collider->sat_box );
 	
 	 printf("Collsion! Proj.Vec {X:%d, Y:%d}\n", projectionVec.x, projectionVec.y);
 
@@ -47,7 +46,7 @@ void EntityManager::resolveCollisions() {
 		                                 entities[i]->collider->sat_box->h/2 );
 	 
 
-      }
+	 // }
     }
     
   }
@@ -66,7 +65,7 @@ void EntityManager::update(float dt) {
 */
 
  
-  resolveCollisions();
+  
   
   
   
@@ -74,6 +73,9 @@ void EntityManager::update(float dt) {
     if (entities[i])
       entities[i]->update(dt);
   }
+
+
+  resolveCollisions();
   
 
 }
