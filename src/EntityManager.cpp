@@ -40,28 +40,12 @@ void EntityManager::resolveCollisions() {
 	projectionVec = SAT::getCollisionVector( entities[ImportantEntity::PLAYER]->collider->sat_box,
 						 entities[i]->collider->sat_box );
 
-
-
-
-	if ( projectionVec.x == 0 ) {
-	  projectionVec.y > 0 ? printf("Colliding from bottom\n") : printf("Colliding from top\n");
-	}
-	else if (projectionVec.y == 0) {
-	   projectionVec.x > 0 ? printf("Colliding from right\n") : printf("Colliding from left\n");
-	}
-	
-	
-	 printf("Collsion! Proj.Vec {X:%d, Y:%d}\n", projectionVec.x, projectionVec.y);
-	 
-	 printf("SAT_RECT CENTER: X:%d  Y:%d\n", entities[i]->collider->sat_box->w/2,
-		                                 entities[i]->collider->sat_box->h/2 );
-	 
+	entities[ImportantEntity::PLAYER]->position =
+	  entities[ImportantEntity::PLAYER]->position + projectionVec;
 	 
       }
-    }
-    
+    }    
   }
-  
 }
 
 
