@@ -34,7 +34,7 @@ void EntityManager::resolveCollisions() {
   for ( int i = 1; i < MAX_ENTITIES; i++ ) {
 
     if ( entities[i] && entities[i]->collider ) {
-      if ( entities[ImportantEntity::PLAYER]->collider->isColliding( entities[i]->collider ) ) {
+      if ( Physics::isColliding( entities[ImportantEntity::PLAYER]->collider, entities[i]->collider )  ) {
 	
 	projectionVec = SAT::getCollisionVector( entities[ImportantEntity::PLAYER]->collider->sat_box,
 						 entities[i]->collider->sat_box );
@@ -73,9 +73,6 @@ void EntityManager::update(float dt) {
 void EntityManager::render(SDL_Renderer* r) {
   for (int i = 0; i < MAX_ENTITIES; i++) {
     if (entities[i])
-      if (entities[i]->sprite)
-	entities[i]->sprite->update( entities[i] );
-      
       entities[i]->render(r);
   }
 }

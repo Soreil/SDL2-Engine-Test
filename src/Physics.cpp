@@ -1,31 +1,32 @@
 #include "Physics.h"
 
+#include "Collider.h"
+#include "SAT.h"
 
 
-Physics::CollisionDirection Physics::getCollisionDirection( int ax, int ay,
-							    int bx, int by,
-							    int colResX, int colResY ) {
-  if ( colResX > colResY ) {
-    if ( ax < bx ) {
-      return CollisionDirection::DIR_LEFT;
-    }
-    else if ( ax > bx ) {
-      return CollisionDirection::DIR_RIGHT;
-    }
-  }
-  else if ( colResX <= colResY ) {
-    if ( ay < by ) {
-      return CollisionDirection::DIR_TOP;
-    }
-    else if ( ay > by ) {
-      return CollisionDirection::DIR_BOTTOM;
-    }
-  }
-}
+bool Physics::isColliding( Collider* a, Collider* b ) {
 
-
-void Physics::resolveCollision( Entity* entity, CollisionDirection dir, Vec2 displacement ) {
-  entity->collider->x = displacement.x;
-  entity->collider->y = displacement.y;    
-}
+  if ( a && b) {
   
+    SAT_Rect* sat_a = a->sat_box;
+    SAT_Rect* sat_b = b->sat_box;
+
+    // b_box = sat_a :  cBox = sat_b
+    
+    if ( sat_a->x < sat_b->x + sat_b->w && sat_b->x < sat_a->x + sat_a->w &&
+	 sat_a->y < sat_b->y + sat_b->h && sat_b->y < sat_a->y + sat_a->h    ) {
+
+      sat_a = nullptr;
+      sat_b = nullptr;
+      return true;
+    }
+    else {
+      sat_a = nullptr;
+      sat_b = nullptr;
+      return false;
+    }
+  }
+  
+  
+}
+

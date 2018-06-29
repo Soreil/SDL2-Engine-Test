@@ -9,22 +9,19 @@
 
 - Test collisions implementation
 
-
-
 - Test Collision resolution
   --Error:  getCollisionArea return junk numbers from improper calculations
   
-
-
->>>YOU ARE HERE
-
 - Implement SAT-based Collisions
   -- SAT collisions are working on the x-axis. 
 
 
 
-- Move relevant Physics code to Physics.h/.cpp namespace, clean up affected collision code
+>>>YOU ARE HERE
 
+- clean up some SAT implementations, gut Collider class of useless stuff
+
+- Finish resourceManager
 
 
 Best way to go about this is to have entityManager, with three stacks;
