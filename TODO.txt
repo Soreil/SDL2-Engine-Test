@@ -15,13 +15,13 @@
 - Implement SAT-based Collisions
   -- SAT collisions are working on the x-axis. 
 
-
+- clean up some SAT implementations, gut Collider class of useless stuff
 
 >>>YOU ARE HERE
 
-- clean up some SAT implementations, gut Collider class of useless stuff
+- Finish resourceManager (ON HOLD UNTIL I DETERMINE IF I  NEED ONE)
 
-- Finish resourceManager
+- Create a map class
 
 
 Best way to go about this is to have entityManager, with three stacks;
