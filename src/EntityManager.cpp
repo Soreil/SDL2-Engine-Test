@@ -27,7 +27,6 @@ void EntityManager::addEntity(Entity* entity) {
 }
 
 
-
 void EntityManager::resolveCollisions() {
   Vec2 projectionVec;
   
@@ -36,7 +35,7 @@ void EntityManager::resolveCollisions() {
     if ( entities[i] && entities[i]->collider ) {
       if ( Physics::isColliding( entities[ImportantEntity::PLAYER]->collider, entities[i]->collider )  ) {
 	
-	projectionVec = SAT::getCollisionVector( entities[ImportantEntity::PLAYER]->collider->sat_box,
+	projectionVec = Physics::getCollisionVector( entities[ImportantEntity::PLAYER]->collider->sat_box,
 						 entities[i]->collider->sat_box );
 
 	entities[ImportantEntity::PLAYER]->position =

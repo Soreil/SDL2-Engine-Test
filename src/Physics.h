@@ -15,7 +15,7 @@ namespace Physics {
     DIR_RIGHT
     
   };
-
-  bool isColliding(Collider* a, Collider* b);
   
+  bool isColliding(Collider* a, Collider* b);
+  Vec2 getCollisionVector(SAT_Rect* a, SAT_Rect* b);  
 }
