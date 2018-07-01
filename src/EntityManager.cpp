@@ -79,7 +79,9 @@ void EntityManager::render(SDL_Renderer* r) {
 
 
 EntityManager::EntityManager() {
-
+  for ( int i = 0; i < MAX_ENTITIES; i++ ) {
+    entities[i] = nullptr;
+  }
 }
 
 EntityManager::~EntityManager() {

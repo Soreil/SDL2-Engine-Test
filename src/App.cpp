@@ -11,7 +11,7 @@ App::App()
 bool App::startup()
 {
   // Initialize SDL2
-  if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0) {
+  if (SDL_Init( SDL_INIT_VIDEO | SDL_WINDOW_OPENGL | SDL_INIT_JOYSTICK ) < 0) {
     printf("SDL could not initialize! Error: %s\n",SDL_GetError());
     return false;
   }
@@ -25,25 +25,33 @@ bool App::startup()
     printf( "Error Initializing SDL_ttf!: %s\n", TTF_GetError() );
     return false;
   }
-
-
+  
   // Set game loop flag
   running = true;
-
-  /*
-   Initialize SDL window and renderer 
-   */
+  
+  //Initialize SDL window and renderer  
   window = SDL_CreateWindow("Test", 200, 200,
 			    WINDOW_WIDTH, WINDOW_HEIGHT,
-			    SDL_WINDOW_SHOWN);
+			    SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL );
 
   if (!window) {
     printf(" Window Couldn't be loaded! Err: %s \n", SDL_GetError() );
     return false;
   }
+
+  //INIT GLAD
+  if ( initGlad() )
+    return false;
+
   
-  renderer = SDL_CreateRenderer(
-				window, -1, SDL_RENDERER_ACCELERATED );
+  // USE vSync
+  if ( SDL_GL_SetSwapInterval( 1 ) < 0 ) {
+    printf("Warning! Unable to set VSync! Error:%s\n", SDL_GetError() );
+    return false;
+  }
+
+    
+  //renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED );
 
   if (!renderer) {
     printf(" Renderer Couldn't be loaded! Err: %s \n", SDL_GetError() );
@@ -219,3 +227,100 @@ App::~App()
   cleanup();
 }
 
+
+
+bool App::initGlad() {
+  // INITIALIZE GL 3.3
+  SDL_GL_LoadLibrary(NULL);
+  
+  SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
+  SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 3 );
+  SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
+
+  SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+  SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 24 );
+  
+  glContext = SDL_GL_CreateContext( window );
+  if ( glContext == NULL ) {
+    printf("Error creating glContext in App.cpp! Error:%s\n", SDL_GetError() );
+    return false;
+  }
+  
+  glDisable( GL_DEPTH_TEST );
+  glDisable( GL_CULL_FACE );
+
+  gladLoadGLLoader( SDL_GL_GetProcAddress );
+ 
+  //INIT OpenGL
+  if ( !initGL() ) {
+    printf("Error: Unable to initalize OpenGL!\n" );
+    return false;
+  }
+  
+  return true;
+}
+
+
+
+bool App::initGL() {
+
+  GLuint programID = glCreateProgram();
+
+  GLuint vertexShader = glCreateShader( GL_VERTEX_SHADER );
+
+  const GLchar* vertexShaderSource[] = {
+    "#version 140\nin vec2 LVertexPos2D; void main() { gl_Position = vec4( LVertexPos2D.x, LVertexPos2D.y, 0, 1 ); }"
+  };
+
+  glShaderSource( vertexShader, 1, vertexShaderSource, NULL );
+  glCompileShader( vertexShader );
+
+  GLint vShaderCompiled = GL_FALSE;
+  glGetShaderiv( vertexShader, GL_COMPILE_STATUS, &vShaderCompiled );
+
+  if ( vShaderCompiled != GL_TRUE ) {
+    printf("Unable to compile vertex shader!: %d\n", vertexShader); 
+    return false;
+  }
+
+  //attatch frag. shader
+  glAttachShader( programID, vertexShader );
+
+  GLuint fragmentShader = glCreateShader( GL_FRAGMENT_SHADER );
+  const GLchar* fragmentShaderSource[] = {
+    "#version 140\nout vec4 LFragment; void main() { LFragment = vec4( 1.0, 1.0, 1.0, 1.0 ); }"
+  };
+
+  glShaderSource( fragmentShader, 1, fragmentShaderSource, NULL );
+  glCompileShader( fragmentShader );
+
+  GLint fShaderCompiled = GL_FALSE;
+  glGetShaderiv( fragmentShader, GL_COMPILE_STATUS, &fShaderCompiled );
+  if ( fShaderCompiled != GL_TRUE ) {
+    printf("Unable to compile fragment shader!: %d\n", fragmentShader); 
+    return false;
+  }
+
+  //attatch vert. shader
+  glAttachShader( programID, fragmentShader );
+
+  glLinkProgram( programID );
+
+  // Check for errors
+  GLint programSuccess = GL_TRUE;
+  glGetProgramiv( programID, GL_LINK_STATUS, &programSuccess );
+  if ( programSuccess != GL_TRUE ) {
+    printf("Error linking program!: %d\n", programID); 
+    return false;
+  }
+
+  //get vertex attribute location
+
+  GLint vertexPos2DLocation = glGetAttribLocation( programID, "LVertexPos2D" );
+
+  if ( vertexPos2DLocation == -1 ) {
+    printf("LVertexPos2D is not a valid glsl program variable!\n");
+    return false;
+  }
+  
+}

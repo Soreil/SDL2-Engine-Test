@@ -1,0 +1,70 @@
+
+
+- Figure out movement issue [-]
+  -- It's an issue with DT calculation, OF COURSE
+
+- Implement other states [x] (Solved for now, I Implemented a playing state which will be enough.)
+
+- Implement a timer class ( Timer is implemented, seems to be working)
+
+- Test collisions implementation
+
+- Test Collision resolution
+  --Error:  getCollisionArea return junk numbers from improper calculations
+  
+- Implement SAT-based Collisions
+  -- SAT collisions are working on the x-axis. 
+
+- clean up some SAT implementations, gut Collider class of useless stuff
+
+>>>YOU ARE HERE
+
+
+- Resource Manager idea
+
+Loads atlases, holds texture information/location. When (lets say) map needs a grass tile, it will query
+the resource manager for the location of the texture it's looking for, returning it as a pointer.
+
+//TILES
+
+Tiles will act as a data structure, holding a collider (if the object is a collidable) and the location of it's
+texture on the atlas, and if more than 1 atlas, which atlas it's on.
+
+//MAPS
+
+Maps will hold an array of tiles that makes up the map, as well as holding a data structure of pointers
+to collidable walls, to speed up collisions. Maps will render the scene by asking each tile for it's texture.
+
+
+
+
+
+
+
+
+
+- Finish resourceManager (ON HOLD UNTIL I DETERMINE IF I  NEED ONE)
+
+- Create a map class
+
+
+Best way to go about this is to have entityManager, with three stacks;
+
+(UPDATED OPINION): Having seperate stacks is kind of a bitch. Could just reserve X number of spots at the front
+	 	   of the stack to certain Entities as a way to know where special entities are.  
+
+one stack for important entities,
+one for less important entities (NPCs),
+one for static objects (Walls, ect.)
+
+Maps will be their own class, and contain mostly data
+
+Map will be passed to an entity manager for a spawnMapEntities(Map* map) function
+
+entityManager will do broad phase / narrow phase checks (player against all colliders / players around near col.) 
+
+
+- In game states? (Sub-states inside PlayingState)
+
+- Maybe do some drawing up of the shops
+
