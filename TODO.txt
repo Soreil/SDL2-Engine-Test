@@ -19,7 +19,11 @@
 
 >>>YOU ARE HERE
 
-- Finish resourceManager (ON HOLD UNTIL I DETERMINE IF I  NEED ONE)
+- Finish resourceManager {
+  Load batched textures for efficent rendering
+}
+
+- Rework sprites to hold location of textures on an batched atlas
 
 - Create a map class
 

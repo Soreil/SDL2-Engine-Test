@@ -3,9 +3,6 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
-#include "glad/glad.h"
-#include <SDL_opengl.h>
-
 #include "Text.h"
 #include "Input.h"
 #include "Player.h"
@@ -18,8 +15,6 @@ class App {
   const int WINDOW_HEIGHT = 600;
   
   SDL_Window * window = nullptr;
-
-  SDL_GLContext glContext;
   
   SDL_Surface* screenSurface = nullptr;
   SDL_Renderer* renderer = nullptr;
@@ -47,14 +42,7 @@ class App {
   
   GameStateManager* stateManager = nullptr;
 
-  
-  
-  App();
-
-  bool initGlad();
-
-  bool initGL();
-  
+ 
   bool startup();
   
   void Load();
@@ -66,7 +54,8 @@ class App {
   void cleanup();
   
   void run();
-  
+
+   App();
   ~App();
 };
 
