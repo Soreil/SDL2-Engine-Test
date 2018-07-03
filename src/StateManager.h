@@ -3,6 +3,8 @@
 
 #include <vector>
 
+class ResourceManager;
+
 enum GameState {
   STARTUP,
   MENU,
@@ -42,7 +44,7 @@ class GameStateManager {
   void render(SDL_Renderer *r);
 
   
-  GameStateManager(SDL_Renderer* r);
+  GameStateManager(SDL_Renderer* r, ResourceManager* resourceManager);
   ~GameStateManager();
   
 };

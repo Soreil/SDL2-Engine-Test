@@ -3,6 +3,8 @@
 #include "MenuState.h"
 #include "PlayingState.h"
 
+#include "ResourceManager.h"
+
 #include <stdio.h>
 
 void GameStateManager::switchState(GameState newState) {
@@ -35,15 +37,15 @@ void GameStateManager::render(SDL_Renderer* r) {
     currStatePtr->render(r);
 }
 
-GameStateManager::GameStateManager(SDL_Renderer* r) {
+GameStateManager::GameStateManager(SDL_Renderer* r, ResourceManager* resourceManager) {
   //clean the array at init
   for (int i = 0; i < STATE_COUNT; i++) {
     states[i] = nullptr;
   }
   
   //states[GameState::STARTUP]  = new MenuState();
-  states[GameState::MENU]     = new MenuState(r);
-  states[GameState::PLAYING]  = new PlayingState(r);
+  states[GameState::MENU]     = new MenuState(r,    resourceManager);
+  states[GameState::PLAYING]  = new PlayingState(r, resourceManager);
   //states[GameState::SHUTDOWN] = new MenuState();
 
 

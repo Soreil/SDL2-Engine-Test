@@ -7,7 +7,7 @@
 #include "Input.h"
 #include "Player.h"
 #include "StateManager.h"
-
+#include "ResourceManager.h"
 
 class App {
  public:
@@ -41,7 +41,8 @@ class App {
   const int FRAMERATE = 60;
   
   GameStateManager* stateManager = nullptr;
-
+  ResourceManager* resourceManager = nullptr;
+  
  
   bool startup();
   

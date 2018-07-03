@@ -5,8 +5,9 @@
 
 #include "Sprite.h"
 
-
+class ResourceManager;
 class GameStateManager;
+
 
 class MenuState : public State {
  private:
@@ -23,7 +24,7 @@ class MenuState : public State {
   void update(float deltaTime);
   void render(SDL_Renderer* r);
 
-  MenuState(SDL_Renderer* r);
+  MenuState(SDL_Renderer* r, ResourceManager* resourceManager);
   ~MenuState();
   
 };

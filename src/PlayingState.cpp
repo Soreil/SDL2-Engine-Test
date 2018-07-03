@@ -7,6 +7,8 @@
 
 #include "StateManager.h"
 
+#include "ResourceManager.h"
+
 void PlayingState::onEnterState(GameStateManager* sm) {
   setStateManager(sm);
   timer.start();
@@ -46,7 +48,7 @@ void PlayingState::render(SDL_Renderer* r) {
 
 
 
-PlayingState::PlayingState(SDL_Renderer* r) {
+PlayingState::PlayingState(SDL_Renderer* r, ResourceManager* resourceManager ) {
   //player = new Player(r, new Vec2{100,100}, 100, 100 );
 
   entityManager.addEntity( new Player(r, new Vec2{100,100}, 128, 128 ) );

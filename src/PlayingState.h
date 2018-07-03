@@ -11,6 +11,9 @@
 #include "EntityManager.h"
 
 
+class ResourceManager;
+
+
 class PlayingState : public State {
  private:
   //temporary for testing, eventually move this to an entityManager
@@ -29,7 +32,7 @@ class PlayingState : public State {
   void update(float deltaTime);
   void render(SDL_Renderer* r);
 
-  PlayingState(SDL_Renderer* r);
+  PlayingState(SDL_Renderer* r, ResourceManager* resourceManager );
   ~PlayingState();
   
 };

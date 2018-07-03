@@ -2,6 +2,8 @@
 
 #include "StateManager.h"
 
+#include "ResourceManager.h"
+
 void MenuState::onEnterState(GameStateManager* sm) {
   setStateManager(sm);
 }
@@ -30,7 +32,7 @@ void MenuState::render(SDL_Renderer *r) {
   backgroundLogo->render(r);
 }
 
-MenuState::MenuState(SDL_Renderer* r) {
+MenuState::MenuState(SDL_Renderer* r, ResourceManager* resourceManager) {
   backgroundLogo = new Sprite(r, bgLogoName, new Vec2{0,0}, NULL);
 }
 

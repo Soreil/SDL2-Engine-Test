@@ -11,7 +11,7 @@ App::App()
 bool App::startup()
 {
   // Initialize SDL2
-  if (SDL_Init( SDL_INIT_VIDEO | SDL_WINDOW_OPENGL | SDL_INIT_JOYSTICK ) < 0) {
+  if (SDL_Init( SDL_INIT_VIDEO | SDL_INIT_JOYSTICK ) < 0) {
     printf("SDL could not initialize! Error: %s\n",SDL_GetError());
     return false;
   }
@@ -73,7 +73,9 @@ bool App::startup()
 */
 void App::Load()
 {
-  stateManager = new GameStateManager(renderer);
+  resourceManager = new ResourceManager(renderer);
+  
+  stateManager = new GameStateManager(renderer, resourceManager);
 }
 
 

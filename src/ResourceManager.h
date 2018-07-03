@@ -4,21 +4,29 @@
 #include <cstdint>
 #include <map>
 
+enum Atlas {
+  ATLAS_TEST,
+  ATLAS_PLAYING
+};
+
 class ResourceManager {
  private:
 
-  const uint32_t MAX_TEXTURES = 32;
+  static const uint32_t MAX_ATLASES = 2;
   
-  SDL_Texture* textures[MAX_TEXTURES];
-  std::map<std::string, Sprite*> texture;
+  SDL_Texture* atlasTextures[MAX_ATLASES];
+
+  std::map<std::string, SDL_Rect*>spriteLocations;
   
   
  public:
 
 
-  SDL_Texture* getTexture( std::string key );
+  SDL_Rect* getSpriteRect( std::string key );
+  void addAtlas( SDL_Renderer* r, std::string location, Atlas atlas );
   
   
-  ResourceManager();
+  
+  ResourceManager( SDL_Renderer* r );
   ~ResourceManager();
 };

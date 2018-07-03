@@ -14,16 +14,6 @@ void EntityManager::addEntity(Entity* entity) {
       break;
     }
   }
-
-  for (int i = 0; i < MAX_ENTITIES; i++) {
-    if (entities[i]) {
-      printf("%d has an entity\n", i);
-    }
-    else {
-      printf("%d is a nullptr\n", i);
-    }
-  }
-  
 }
 
 

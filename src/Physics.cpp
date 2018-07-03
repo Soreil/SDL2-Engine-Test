@@ -85,7 +85,7 @@ Vec2 Physics::getCollisionVector(SAT_Rect* a, SAT_Rect* b) {
     projection.y *= -1;
   } 
   
-  printf("Projection vector: X:%d  Y:%d \n", projection.x, projection.y);   
+  //printf("Projection vector: X:%d  Y:%d \n", projection.x, projection.y);   
   // Axis with the smallest overlap means the collision occured on that axis, so resolution
   // needs to resolve using that axis' projection. 
   abs(projection.x) > abs(projection.y) ?  projection.x = 0 : projection.y = 0;
