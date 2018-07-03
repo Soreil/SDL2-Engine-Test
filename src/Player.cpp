@@ -3,10 +3,9 @@
 #include <vector>
 #include "Vector2.h"
 
+#include "ResourceManager.h"
 
 void Player::load( ) {
-  position.x = 100;
-  position.y = 100;
 }
 
 
@@ -64,13 +63,26 @@ void Player::render(SDL_Renderer* r) {
 }
 
 
-Player::Player( SDL_Renderer* r, Vec2* position, int w, int h) {
-  sprite = new Sprite(r, textureName, NULL, new SDL_Rect{position->x, position->y, w, h} );
+Player::Player( SDL_Renderer* r, ResourceManager* resourceManager, int x, int y, int w, int h) {
+  sprite = new Sprite(r, resourceManager, Atlas::ATLAS_TEST, textureName, x, y );
 
-  collider = new Collider(position->x, position->y, w, h);
   
-  load();
-    
+  
+  collider = new Collider(x, y, w, h);
+
+  position.x = x;
+  position.y = y;
+  
+}
+
+Player::Player( SDL_Renderer* r, ResourceManager* resourceManager, int x, int y, bool sizeColliderToSprite) {
+  sprite = new Sprite(r, resourceManager, Atlas::ATLAS_TEST, textureName, x, y );
+  if ( sizeColliderToSprite ) {
+    collider = new Collider( x, y, sprite->atlasLoc->w, sprite->atlasLoc->h );
+  }
+
+  position.x = x;
+  position.y = y;
   
 }
 

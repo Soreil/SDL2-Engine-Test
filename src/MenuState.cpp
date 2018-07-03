@@ -33,7 +33,7 @@ void MenuState::render(SDL_Renderer *r) {
 }
 
 MenuState::MenuState(SDL_Renderer* r, ResourceManager* resourceManager) {
-  backgroundLogo = new Sprite(r, bgLogoName, new Vec2{0,0}, NULL);
+  backgroundLogo = new Sprite(r, resourceManager, Atlas::ATLAS_MENU_TEXTURE, bgLogoName, 0, 0);
 }
 
 MenuState::~MenuState() {

@@ -2,6 +2,10 @@
 
 #include "SAT.h"
 
+#include "ResourceManager.h"
+
+#include "Vector2.h"
+
 void TestEnt::load() {
 
 }
@@ -19,11 +23,11 @@ void TestEnt::render(SDL_Renderer* r) {
 }
 
 
-TestEnt::TestEnt(SDL_Renderer* r, int32_t x, int32_t y, int32_t w, int32_t h) {
+TestEnt::TestEnt(SDL_Renderer* r, ResourceManager* resourceManager, int32_t x, int32_t y, int32_t w, int32_t h) {
   position.x = x;
   position.y = y;
-  collider = new Collider(x, y, w, h);
-  sprite = new Sprite( r, textureName, nullptr, new SDL_Rect{x, y, w, h} );
+  sprite = new Sprite( r, resourceManager, Atlas::ATLAS_TEST, textureName, x, y );
+  collider = new Collider(x, y, sprite->atlasLoc->w ,sprite->atlasLoc->h );
 }
 
 TestEnt::~TestEnt() {

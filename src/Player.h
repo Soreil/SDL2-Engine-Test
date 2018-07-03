@@ -7,6 +7,8 @@
 #include <cstdint>
 
 
+class ResourceManager;
+
 enum Direction {
   UP = 0,
   DOWN,
@@ -17,7 +19,7 @@ enum Direction {
 class Player : public Entity {
  private:
 
-  const std::string textureName = "resources/ass.bmp";
+  const std::string textureName = "red";
 
   Direction currDirection = Direction::UP;
   bool moving = false;
@@ -43,7 +45,8 @@ class Player : public Entity {
 
   void render(SDL_Renderer *r);
   
-  Player(SDL_Renderer* r, Vec2* position, int w, int h );
+  Player(SDL_Renderer* r, ResourceManager* resourceManager, int x, int y, int w, int h );
+  Player( SDL_Renderer* r, ResourceManager* resourceManager, int x, int y, bool sizeColliderToSprite);
   ~Player();
   
 

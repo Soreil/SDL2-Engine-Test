@@ -4,24 +4,30 @@
 #include "Graphics.h"
 #include "Vector2.h"
 
+#include "ResourceManager.h"
 
 class Entity;
 
+
+enum Atlas;
+
 class Sprite {
  public:
-  SDL_Texture* texture = nullptr;
+
+  std::string spriteName;
+  
+  SDL_Texture* atlasTex = nullptr;
+  SDL_Rect* atlasLoc    = nullptr;
 
   SDL_Rect* renderQuad = nullptr;
 
+  
   void update(Entity* entity);
   
   void render(SDL_Renderer* r);
 
-  void setTexture(SDL_Renderer* r, const std::string textureName);
-
   //Sprite();
-  Sprite(SDL_Renderer* r, const std::string textureName, Vec2* position, SDL_Rect* rQuad);
-    
+  Sprite(SDL_Renderer* r, ResourceManager* resourceManager, Atlas atlas, const std::string spriteName, int x, int y );   
   
   ~Sprite();
   

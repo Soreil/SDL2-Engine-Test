@@ -6,7 +6,7 @@
 
 enum Atlas {
   ATLAS_TEST,
-  ATLAS_PLAYING
+  ATLAS_MENU_TEXTURE
 };
 
 class ResourceManager {
@@ -23,8 +23,12 @@ class ResourceManager {
 
 
   SDL_Rect* getSpriteRect( std::string key );
+
+  SDL_Texture* getAtlasTexture( Atlas atlas );
+
   void addAtlas( SDL_Renderer* r, std::string location, Atlas atlas );
-  
+
+  SDL_Rect* getSpriteLocation( std::string spriteName,  Atlas atlas );
   
   
   ResourceManager( SDL_Renderer* r );

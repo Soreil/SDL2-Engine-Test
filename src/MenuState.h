@@ -12,7 +12,7 @@ class GameStateManager;
 class MenuState : public State {
  private:
   Sprite* backgroundLogo = nullptr;
-  const std::string bgLogoName = "resources/menuTexture.bmp";
+  const std::string bgLogoName = "menuTexture";
   
  public:
 
