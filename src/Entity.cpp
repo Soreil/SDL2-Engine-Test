@@ -19,6 +19,13 @@ void Entity::updateSpriteAndCollider() {
 
 
 
+void Entity::wrapColliderToSprite(Collider* c, Sprite* s) {
+  if (c && s) {
+  c->w = s->atlasLoc->w;
+  c->h = s->atlasLoc->h;
+  }
+}
+
 
 
 Entity::Entity() {

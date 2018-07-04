@@ -10,6 +10,7 @@
 
 #include "EntityManager.h"
 
+#include "Map.h"
 
 class ResourceManager;
 
@@ -20,6 +21,8 @@ class PlayingState : public State {
   Player* player = nullptr;
 
   EntityManager entityManager;
+
+  Map* map = nullptr;
   
   Timer timer;
   

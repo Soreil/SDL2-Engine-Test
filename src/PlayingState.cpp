@@ -43,6 +43,7 @@ void PlayingState::update(float deltaTime) {
 
 void PlayingState::render(SDL_Renderer* r) {
   //player->render(r);
+  map->render(r);
   entityManager.render(r);
 }
 
@@ -51,6 +52,8 @@ void PlayingState::render(SDL_Renderer* r) {
 PlayingState::PlayingState(SDL_Renderer* r, ResourceManager* resourceManager ) {
   //player = new Player(r, new Vec2{100,100}, 100, 100 );
 
+  map = new Map(resourceManager);
+  
   entityManager.addEntity( new Player(r,resourceManager, 32, 32 , true ) );
 
   entityManager.addEntity( new TestEnt(r, resourceManager, 400, 400, 128, 128) );
@@ -61,4 +64,7 @@ PlayingState::PlayingState(SDL_Renderer* r, ResourceManager* resourceManager ) {
 PlayingState::~PlayingState() {
   // delete player;
   // player = nullptr;
+  delete map;
+  map = nullptr;
+  
 }

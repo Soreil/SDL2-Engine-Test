@@ -3,13 +3,14 @@
 #include "Graphics.h"
 
 
-
+/*
 SDL_Rect* ResourceManager::getSpriteRect( std::string key ) {
   if ( spriteLocations[key] )
     return spriteLocations[key];
 
   return nullptr;
-}
+  }
+*/
 
 
 
@@ -29,6 +30,7 @@ SDL_Texture* ResourceManager::getAtlasTexture( Atlas atlas ) {
     return atlasTextures[atlas];
 }
 
+/*
 SDL_Rect* ResourceManager::getSpriteLocation( std::string spriteName,  Atlas atlas ) {
   if ( spriteLocations[spriteName] ) {
     return spriteLocations[spriteName];
@@ -37,8 +39,24 @@ SDL_Rect* ResourceManager::getSpriteLocation( std::string spriteName,  Atlas atl
     printf(" Error in ResourceManager.cpp: Couldn't find sprite location for '%s'!\n", spriteName.c_str() );
     return nullptr;
   }
+  }
+*/
+
+SDL_Rect* ResourceManager::getSpriteLocation( std::string spriteName,  Atlas atlas ) {
+  if ( spriteLocations[atlas][spriteName] ) {
+    return spriteLocations[atlas][spriteName];
+  }
+  else {
+    printf(" Error in ResourceManager.cpp: Couldn't find sprite location for '%s'!\n", spriteName.c_str() );
+  }
 }
 
+
+void ResourceManager::getSpriteLocationsForAtlas( std::map<std::string, SDL_Rect*>* locMap, Atlas atlas ) {
+  for ( auto p : spriteLocations[atlas] ) {
+    locMap->insert( std::pair<std::string, SDL_Rect*>(p.first, p.second) );
+  }
+}
 
 ResourceManager::ResourceManager( SDL_Renderer* r ) {
   for ( int i = 0; i < MAX_ATLASES; i++ ) {
@@ -47,14 +65,14 @@ ResourceManager::ResourceManager( SDL_Renderer* r ) {
 
   addAtlas(r, "resources/testAtlas.bmp", Atlas::ATLAS_TEST );
   
-  spriteLocations["purple"] = new SDL_Rect{ 0,  0, 32,  32 };
-  spriteLocations["green"]  = new SDL_Rect{ 32, 0, 32,  32 };
-  spriteLocations["red"]    = new SDL_Rect{ 0,  32, 32, 32 };
-  spriteLocations["blue"]   = new SDL_Rect{ 32, 32, 32, 32 };   
+  spriteLocations[Atlas::ATLAS_TEST]["purple"] = new SDL_Rect{ 0,  0, 32,  32 };
+  spriteLocations[Atlas::ATLAS_TEST]["green"]  = new SDL_Rect{ 32, 0, 32,  32 };
+  spriteLocations[Atlas::ATLAS_TEST]["red"]    = new SDL_Rect{ 0,  32, 32, 32 };
+  spriteLocations[Atlas::ATLAS_TEST]["blue"]   = new SDL_Rect{ 32, 32, 32, 32 };   
 
   addAtlas( r, "resources/menuTexture.bmp", Atlas::ATLAS_MENU_TEXTURE );
 
-  spriteLocations["menuTexture"] = new SDL_Rect{0, 0, 800, 600};
+  spriteLocations[Atlas::ATLAS_MENU_TEXTURE]["menuTexture"] = new SDL_Rect{0, 0, 800, 600};
   
 }
 
@@ -64,10 +82,14 @@ ResourceManager::~ResourceManager() {
     delete atlasTextures[i];
     atlasTextures[i] = nullptr;
   }
-  for ( auto p : spriteLocations ) {
-    if ( p.second != nullptr )
-      delete p.second;
-    p.second != nullptr;
-    
+  
+  for ( int i = 0; i < MAX_ATLASES; i++ ) {
+    for ( auto p : spriteLocations[i] ) {
+      if ( p.second != nullptr ) {
+	delete p.second;
+	p.second = nullptr;
+      }
+    }
   }
+  
 }
