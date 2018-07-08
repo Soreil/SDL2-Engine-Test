@@ -10,6 +10,10 @@
 
 *.bat~
 
+
+dataFormatDesign.txt
+dataFormatDesign.txt~
+
 *.txt~
 
 *.exe

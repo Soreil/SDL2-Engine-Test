@@ -52,7 +52,7 @@ void PlayingState::render(SDL_Renderer* r) {
 PlayingState::PlayingState(SDL_Renderer* r, ResourceManager* resourceManager ) {
   //player = new Player(r, new Vec2{100,100}, 100, 100 );
 
-  map = new Map(resourceManager);
+  map = new Map(resourceManager, Atlas::ATLAS_TEST);
   
   entityManager.addEntity( new Player(r,resourceManager, 32, 32 , true ) );
 

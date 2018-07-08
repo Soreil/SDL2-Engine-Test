@@ -20,27 +20,36 @@ class Map {
 
   std::map<std::string, SDL_Rect*> atlasLocs;
   
-  static const uint16_t MAP_WIDTH = 4;
-  static const uint16_t MAP_HEIGHT = 4;
+  uint16_t MAP_WIDTH;
+  uint16_t MAP_HEIGHT;
 
-  const int map[MAP_WIDTH][MAP_HEIGHT] = {
-    { 1, 1, 1, 1 },
-    { 1, 1, 1, 1 },
-    { 1, 1, 1, 1 },
-    { 1, 1, 1, 1 }
-  };
+  std::vector<int> tileMap;
+  
   
  public:
   const int tileWidth = 32;
   const int tileHeight = 32;
+
+
+
+  int getMapIndex(int x, int y) { return (MAP_WIDTH*y)+x; }
+
+  bool setMapData( std::vector<int> tiles, uint16_t width, uint16_t height );
   
-  void load();
+  void load(ResourceManager* resourceManager, Atlas atlas);
   
   void update(float dt);
 
   void render(SDL_Renderer* r);
 
-  Map( ResourceManager* resManager );
+  /*
+  virtual void interpretAndMapTile( SDL_Renderer* r, SDL_Texture* atlas,
+				    std::map<std::string, SDL_Rect*> atlasLocs, SDL_Rect* dstRect );
+
+  */
+  void cleanup();
+  
+  Map( ResourceManager* resManager, Atlas atlas );
   ~Map();
   
 

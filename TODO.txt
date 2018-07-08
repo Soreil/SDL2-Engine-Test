@@ -23,8 +23,6 @@
 
 - Rework sprites to hold location of textures on an batched atlas
 
->>>YOU ARE HERE
-
 - Find a way to unify constructors of entity creation, it's a mess right now
        (It's not that bad, just keep some basic structure to it pls)
        
@@ -33,19 +31,30 @@
 
 - Create a map class
 
+
+>>>YOU ARE HERE
+
+  - Generalize Map class to be inhereted
+
+  - Test colliding walls
+
+
+  - Interactions with specific entities
+
+
 Maps will be their own class, and contain mostly data
 Map will be passed to an entity manager for a spawnMapEntities(Map* map) function
 entityManager will do broad phase / narrow phase checks (player against all colliders / players around near col.) 
 
 
+{
+		( Use TinyXML-2 instead )
+	- Create a map format/ and or data format + parser 
 
-- Create a map format/ and or data format + parser
-
-
-- Generalized serialization  (for map data to start but if I just implement full serialization here it will
-  	      		      save me headaches later (Me thinks)
-			      )
-
+	- Generalized serialization  (for map data to start but if I just implement full serialization here it will
+  	        		      save me headaches later (Me thinks)
+				      )
+}
 
 - In game states? (Sub-states inside PlayingState)
 
